@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Siva Prakash — Creative Developer</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+    
+    <!-- GSAP + ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Canvas Background -->
+    <canvas id="particleCanvas"></canvas>
+
+    <!-- Film Grain -->
+    <div class="grain"></div>
+
+    <!-- Frame Border -->
+    <div class="frame-border">
+        <div class="frame-corner frame-top-left"></div>
+        <div class="frame-corner frame-top-right"></div>
+        <div class="frame-corner frame-bottom-left"></div>
+        <div class="frame-corner frame-bottom-right"></div>
+    </div>
+
+    <!-- Main Container -->
+    <main class="container">
+
+        <!-- ============================================ -->
+        <!-- HERO -->
+        <!-- ============================================ -->
+        <section class="section hero" id="hero">
+            <div class="hero-content">
+                <div class="hero-label">Creative Developer</div>
+                <h1 class="hero-title">
+                    <span class="line">SIVAPRAKASH</span>
+                </h1>
+                <p class="hero-subtitle">Engineering experiences that move people</p>
+                <div class="hero-divider"></div>
+            </div>
+            <div class="scroll-indicator">
+                <span>Scroll to explore</span>
+                <div class="scroll-line"></div>
+            </div>
+        </section>
+
+        <!-- ============================================ -->
+        <!-- STATEMENT -->
+        <!-- ============================================ -->
+        <section class="section statement" id="statement">
+            <div class="statement-content">
+                <blockquote class="statement-quote">
+                    "Code is poetry.<br/>Design is cinema.<br/>Experience is everything."
+                </blockquote>
+            </div>
+        </section>
+
+        <!-- ============================================ -->
+        <!-- ABOUT -->
+        <!-- ============================================ -->
+        <section class="section about" id="about">
+            <div class="section-content">
+                <h2 class="section-title">About</h2>
+                <div class="about-grid">
+                    <div class="about-text">
+                        <p class="lead">I'm a full-stack developer and mobile engineer specializing in building innovative digital experiences.</p>
+                        <p>Currently pursuing Computer Science and Engineering at Anand Institute of Higher Technology with a passion for crafting seamless interfaces and intelligent systems.</p>
+                        <p>I believe in the intersection of technology and artistry — where code becomes experience, and logic becomes emotion.</p>
+                    </div>
+                    <div class="about-details">
+                        <div class="detail-item">
+                            <span class="detail-label">Based in</span>
+                            <span class="detail-value">Chennai, India</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Education</span>
+                            <span class="detail-value">B.E. CSE — CGPA 8.5</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Years Active</span>
+                            <span class="detail-value">2023 — Present</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+<!-- ============================================ -->
+<!-- EXPERTISE (CLEAN PROGRESS TREE) -->
+<!-- ============================================ -->
+<section class="section skills" id="skills">
+    <div class="section-content">
+        <h2 class="section-title">Expertise</h2>
+        
+        <!-- Skill Categories -->
+        <div class="expertise-wrapper">
+            
+            <div class="expertise-category">
+                <div class="expertise-header">
+                    <span class="expertise-number">01</span>
+                    <h3 class="expertise-title">Languages</h3>
+                </div>
+                <div class="expertise-items">
+                    <span class="expertise-tag">C / C++</span>
+                    <span class="expertise-tag">Java</span>
+                    <span class="expertise-tag">Kotlin</span>
+                    <span class="expertise-tag">Dart</span>
+                    <span class="expertise-tag">Python</span>
+                </div>
+            </div>
+
+            <div class="expertise-category">
+                <div class="expertise-header">
+                    <span class="expertise-number">02</span>
+                    <h3 class="expertise-title">Web Technologies</h3>
+                </div>
+                <div class="expertise-items">
+                    <span class="expertise-tag">HTML / CSS</span>
+                    <span class="expertise-tag">JavaScript</span>
+                    <span class="expertise-tag">React</span>
+                    <span class="expertise-tag">Node.js</span>
+                    <span class="expertise-tag">Full-Stack</span>
+                </div>
+            </div>
+
+            <div class="expertise-category">
+                <div class="expertise-header">
+                    <span class="expertise-number">03</span>
+                    <h3 class="expertise-title">Mobile Development</h3>
+                </div>
+                <div class="expertise-items">
+                    <span class="expertise-tag">Flutter</span>
+                    <span class="expertise-tag">Android Studio</span>
+                    <span class="expertise-tag">Cross-Platform</span>
+                    <span class="expertise-tag">BLE Integration</span>
+                </div>
+            </div>
+
+            <div class="expertise-category">
+                <div class="expertise-header">
+                    <span class="expertise-number">04</span>
+                    <h3 class="expertise-title">Specializations</h3>
+                </div>
+                <div class="expertise-items">
+                    <span class="expertise-tag">AI Fine-Tuning</span>
+                    <span class="expertise-tag">Hugging Face</span>
+                    <span class="expertise-tag">IoT Systems</span>
+                    <span class="expertise-tag">Rapid Prototyping</span>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- CLEAN PROGRESS TREE -->
+        <div class="progress-tree-container">
+            <h3 class="progress-tree-title">Growth Journey</h3>
+            
+            <div class="progress-tree">
+                
+                <!-- Vertical Timeline Line -->
+                <div class="tree-timeline"></div>
+
+                <!-- Progress Nodes -->
+                <div class="progress-node" data-step="1">
+                    <div class="node-marker">
+                        <span class="node-dot"></span>
+                    </div>
+                    <div class="node-card">
+                        <span class="node-year">2023</span>
+                        <h4 class="node-title">Started Journey</h4>
+                        <p class="node-desc">Began Computer Science studies, learned fundamentals</p>
+                    </div>
+                </div>
+
+                <div class="progress-node" data-step="2">
+                    <div class="node-marker">
+                        <span class="node-dot"></span>
+                    </div>
+                    <div class="node-card">
+                        <span class="node-year">2024</span>
+                        <h4 class="node-title">Advanced Mobile Dev</h4>
+                        <p class="node-desc">Mastered Flutter, built cross-platform applications</p>
+                    </div>
+                </div>
+
+                <div class="progress-node" data-step="3">
+                    <div class="node-marker">
+                        <span class="node-dot"></span>
+                    </div>
+                    <div class="node-card">
+                        <span class="node-year">2025</span>
+                        <h4 class="node-title">AI Integration</h4>
+                        <p class="node-desc">Integrated AI/ML, participated in national hackathons</p>
+                    </div>
+                </div>
+
+                <div class="progress-node active" data-step="4">
+                    <div class="node-marker">
+                        <span class="node-dot"></span>
+                        <span class="node-glow"></span>
+                    </div>
+                    <div class="node-card">
+                        <span class="node-year">Present</span>
+                        <h4 class="node-title">Full-Stack Mastery</h4>
+                        <p class="node-desc">Building end-to-end solutions, leading projects</p>
+                        <div class="node-badge">Current</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</section>
+
+        <!-- ============================================ -->
+        <!-- PROJECTS (FIXED) -->
+        <!-- ============================================ -->
+        <section class="section projects" id="projects">
+            <div class="section-content">
+                <h2 class="section-title">Selected Work</h2>
+                
+                <div class="project-list">
+                    
+                    <!-- Project 1 -->
+                    <article class="project-item" data-project="1">
+                        <div class="project-number">01</div>
+                        <div class="project-content">
+                            <div class="project-header">
+                                <h3 class="project-title">Intellithon '25</h3>
+                                <span class="project-year">2025</span>
+                            </div>
+                            <p class="project-subtitle">National Hackathon — 24hr Build</p>
+                            <p class="project-description">
+                                Built a full-stack web application in 24 hours as part of a 4-member team for a national-level hackathon. Integrated AI fine-tuning with Hugging Face, React frontend, and backend services to solve a real-world problem statement.
+                            </p>
+                            <div class="project-tags">
+                                <span class="tag">React</span>
+                                <span class="tag">AI / ML</span>
+                                <span class="tag">Hugging Face</span>
+                                <span class="tag">Full-Stack</span>
+                                <span class="tag">Team Leadership</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Project 2 -->
+                    <article class="project-item" data-project="2">
+                        <div class="project-number">02</div>
+                        <div class="project-content">
+                            <div class="project-header">
+                                <h3 class="project-title">Smart Attendance System</h3>
+                                <span class="project-year">2025</span>
+                            </div>
+                            <p class="project-subtitle">BLE-Based Mobile Application</p>
+                            <p class="project-description">
+                                Designed and developed a mobile application using Flutter and Bluetooth Low Energy (BLE) for automatic attendance marking. Eliminates manual roll calls and reduces proxy attendance. Presented during College Innovators Day.
+                            </p>
+                            <div class="project-tags">
+                                <span class="tag">Flutter</span>
+                                <span class="tag">BLE</span>
+                                <span class="tag">IoT</span>
+                                <span class="tag">Mobile App</span>
+                                <span class="tag">Innovation</span>
+                            </div>
+                        </div>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================ -->
+        <!-- RECOGNITION (FIXED) -->
+        <!-- ============================================ -->
+        <section class="section achievements" id="achievements">
+            <div class="section-content">
+                <h2 class="section-title">Recognition</h2>
+                <div class="achievement-grid">
+                    
+                    <!-- Achievement 1 -->
+                    <div class="achievement-item" data-achievement="1">
+                        <div class="achievement-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="8" r="6"/>
+                                <path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/>
+                            </svg>
+                        </div>
+                        <h3 class="achievement-title">Intellithon'25</h3>
+                        <p class="achievement-desc">National Level Hackathon Participant</p>
+                    </div>
+
+                    <!-- Achievement 2 -->
+                    <div class="achievement-item" data-achievement="2">
+                        <div class="achievement-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+                            </svg>
+                        </div>
+                        <h3 class="achievement-title">Innovators Day</h3>
+                        <p class="achievement-desc">Featured Presenter at College</p>
+                    </div>
+
+                    <!-- Achievement 3 -->
+                    <div class="achievement-item" data-achievement="3">
+                        <div class="achievement-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                                <polyline points="22 4 12 14.01 9 11.01"/>
+                            </svg>
+                        </div>
+                        <h3 class="achievement-title">CGPA 8.5</h3>
+                        <p class="achievement-desc">Academic Excellence</p>
+                    </div>
+
+                    <!-- Achievement 4 -->
+                    <div class="achievement-item" data-achievement="4">
+                        <div class="achievement-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="5" y="2" width="14" height="20" rx="2" ry="2"/>
+                                <line x1="12" y1="18" x2="12.01" y2="18"/>
+                            </svg>
+                        </div>
+                        <h3 class="achievement-title">Flutter Expert</h3>
+                        <p class="achievement-desc">Advanced Mobile Development</p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================ -->
+        <!-- CONTACT -->
+        <!-- ============================================ -->
+        <section class="section contact" id="contact">
+            <div class="section-content">
+                <h2 class="section-title">Let's Connect</h2>
+                <div class="contact-grid">
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <span class="contact-label">Email</span>
+                            <a href="mailto:Sivaprakash7223@gmail.com" class="contact-link">Sivaprakash7223@gmail.com</a>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-label">Phone</span>
+                            <a href="tel:+916369314163" class="contact-link">+91 6369 314 163</a>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-label">Location</span>
+                            <span class="contact-value">Mamallapuram, Chennai 603104</span>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-label">LinkedIn</span>
+                            <a href="https://www.linkedin.com/in/siva-prakash-19b280381" target="_blank" class="contact-link">Connect on LinkedIn</a>
+                        </div>
+                    </div>
+                    <div class="contact-cta">
+                        <p class="cta-text">Open to collaborations, freelance projects, and full-time opportunities.</p>
+                        <a href="mailto:Sivaprakash7223@gmail.com" class="cta-button">
+                            <span class="button-text">Start a Conversation</span>
+                            <span class="button-hover"></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================ -->
+        <!-- OUTRO -->
+        <!-- ============================================ -->
+        <section class="section outro" id="outro">
+            <div class="outro-content">
+                <p class="outro-text">Designed & crafted with precision</p>
+                <p class="outro-year">© 2025 Siva Prakash</p>
+                <div class="outro-tagline">Where Code Meets Cinema</div>
+            </div>
+        </section>
+
+    </main>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
