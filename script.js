@@ -1,444 +1,584 @@
-/* ============================================
-   ROYAL VIOLET PORTFOLIO
-   Complete JavaScript - Fixed Version
-   ============================================ */
+// =========================================
+// 1. DATA & CONFIGURATION
+// =========================================
 
-// ============================================
-// PARTICLE SYSTEM
-// ============================================
-class VioletParticles {
-  constructor() {
-    this.canvas = document.getElementById("particleCanvas");
-    this.ctx = this.canvas.getContext("2d");
-    this.particles = [];
-    this.particleCount = window.innerWidth < 768 ? 50 : 100;
-    this.color = "#A78BFA";
+const ROLES = [
+  "APPLICATION DEVELOPER",
+  "FULL STACK DEVELOPER",
+  "FLUTTER DEVELOPER",
+  "AI ENGINEER",
+  "BACKEND ENGINEER",
+  "SOFTWARE ENGINEER",
+];
 
-    this.init();
-    this.animate();
-    this.addEventListeners();
-  }
+const SKILLS_DATA = {
+  programming: [
+    { name: "Java", icon: "picon:java", level: 90 },
+    { name: "Kotlin", icon: "simple-icons:kotlin", level: 75 },
+    { name: "Dart", icon: "simple-icons:dart", level: 85 },
+    { name: "Python", icon: "simple-icons:python", level: 80 },
+    { name: "JavaScript", icon: "simple-icons:javascript", level: 90 },
+    { name: "TypeScript", icon: "simple-icons:typescript", level: 85 },
+    { name: "SQL", icon: "mdi:database", level: 80 },
+    { name: "C", icon: "mdi:language-c", level: 70 },
+    { name: "C++", icon: "mdi:language-cpp", level: 70 },
+  ],
+  frontend: [
+    { name: "HTML5", icon: "simple-icons:html5", level: 95 },
+    { name: "CSS3", icon: "simple-icons:css3", level: 90 },
+    { name: "Tailwind", icon: "simple-icons:tailwindcss", level: 90 },
+    { name: "React", icon: "simple-icons:react", level: 85 },
+    { name: "Next.js", icon: "simple-icons:nextjs", level: 75 },
+    { name: "Vite", icon: "simple-icons:vite", level: 80 },
+    { name: "Framer Motion", icon: "mdi:animation", level: 70 },
+    { name: "Responsive Design", icon: "mdi:cellphone-settings", level: 95 },
+  ],
+  backend: [
+    { name: "Spring Boot", icon: "simple-icons:spring", level: 85 },
+    { name: "FastAPI", icon: "simple-icons:fastapi", level: 80 },
+    { name: "Node.js", icon: "simple-icons:nodedotjs", level: 85 },
+    { name: "Express", icon: "simple-icons:express", level: 85 },
+    { name: "REST API", icon: "mdi:api", level: 90 },
+    { name: "JWT/OAuth", icon: "mdi:security", level: 85 },
+    { name: "Microservices", icon: "mdi:cube-outline", level: 70 },
+  ],
+  mobile: [
+    { name: "Flutter", icon: "simple-icons:flutter", level: 90 },
+    { name: "Android Studio", icon: "simple-icons:androidstudio", level: 85 },
+    { name: "BLE", icon: "mdi:bluetooth", level: 80 },
+    { name: "Location Services", icon: "mdi:map-marker-radius", level: 85 },
+    { name: "Offline First", icon: "mdi:wifi-off", level: 75 },
+    { name: "State Mgmt", icon: "mdi:state-machine", level: 85 },
+  ],
+  database: [
+    { name: "PostgreSQL", icon: "simple-icons:postgresql", level: 85 },
+    { name: "MongoDB", icon: "simple-icons:mongodb", level: 80 },
+    { name: "Redis", icon: "simple-icons:redis", level: 70 },
+    { name: "JPA/Hibernate", icon: "mdi:database-sync", level: 80 },
+    { name: "SQLAlchemy", icon: "mdi:database-edit", level: 75 },
+  ],
+  ai: [
+    { name: "Prompt Eng.", icon: "mdi:message-text", level: 85 },
+    { name: "LLM APIs", icon: "mdi:robot", level: 80 },
+    { name: "OpenRouter", icon: "mdi:router", level: 75 },
+    { name: "Hugging Face", icon: "simple-icons:huggingface", level: 70 },
+    { name: "Agent Systems", icon: "mdi:brain", level: 75 },
+    { name: "GenAI", icon: "mdi:sparkles", level: 80 },
+  ],
+  cloud: [
+    { name: "Git", icon: "simple-icons:git", level: 90 },
+    { name: "GitHub", icon: "simple-icons:github", level: 95 },
+    { name: "Docker", icon: "simple-icons:docker", level: 70 },
+    { name: "Firebase", icon: "simple-icons:firebase", level: 80 },
+    { name: "Linux", icon: "simple-icons:linux", level: 75 },
+    { name: "Figma", icon: "simple-icons:figma", level: 80 },
+  ],
+  other: [
+    { name: "IoT", icon: "mdi:chip", level: 70 },
+    { name: "REST APIs", icon: "mdi:web", level: 90 },
+    { name: "JWT/TOTP", icon: "mdi:two-factor-authentication", level: 85 },
+    { name: "UI/UX", icon: "mdi:palette", level: 80 },
+    { name: "Agile", icon: "mdi:sync", level: 85 },
+    { name: "Optimization", icon: "mdi:speedometer", level: 80 },
+  ],
+};
 
-  init() {
-    this.resizeCanvas();
-    this.createParticles();
-  }
+// =========================================
+// 2. BOOT SEQUENCE
+// =========================================
 
-  resizeCanvas() {
-    this.canvas.width = window.innerWidth;
-    this.canvas.height = window.innerHeight;
-  }
+const bootLines = [
+  "> INITIALIZING...",
+  "> LOADING MODULES: [FRONTEND] [BACKEND] [MOBILE] [AI]",
+  "> CONNECTING TO SIVAPRAKASH.MAINFRAME...",
+  "> ESTABLISHING SECURE HANDSHAKE...",
+  "> ACCESS GRANTED ✓",
+];
 
-  createParticles() {
-    this.particles = [];
-    for (let i = 0; i < this.particleCount; i++) {
-      this.particles.push({
-        x: Math.random() * this.canvas.width,
-        y: Math.random() * this.canvas.height,
-        size: Math.random() * 2.5 + 0.5,
-        speedX: (Math.random() - 0.5) * 0.3,
-        speedY: Math.random() * 0.5 + 0.2,
-        opacity: Math.random() * 0.5 + 0.3,
-      });
+function initBootSequence() {
+  const bootScreen = document.getElementById("boot-screen");
+  const linesContainer = document.getElementById("boot-lines");
+  const progressBar = document.getElementById("boot-progress-bar");
+  const skipBtn = document.getElementById("boot-skip");
+
+  if (!bootScreen) return;
+
+  let currentLine = 0;
+  let progress = 0;
+
+  // Skip functionality
+  skipBtn.addEventListener("click", finishBoot);
+
+  function typeLines() {
+    if (currentLine < bootLines.length) {
+      const lineEl = document.createElement("div");
+      lineEl.className = "boot-line";
+      lineEl.textContent = bootLines[currentLine];
+
+      // Color the "OK" or checkmarks
+      if (bootLines[currentLine].includes("✓")) {
+        lineEl.innerHTML = bootLines[currentLine].replace(
+          "✓",
+          '<span class="ok">✓</span>',
+        );
+      }
+
+      linesContainer.appendChild(lineEl);
+
+      setTimeout(() => lineEl.classList.add("visible"), 50);
+
+      currentLine++;
+      setTimeout(typeLines, 400);
+    } else {
+      startProgress();
     }
   }
 
-  drawParticles() {
-    this.particles.forEach((p) => {
-      this.ctx.fillStyle = this.color;
-      this.ctx.globalAlpha = p.opacity;
-      this.ctx.beginPath();
-      this.ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-      this.ctx.fill();
-      this.ctx.globalAlpha = 1;
-    });
-  }
-
-  updateParticles() {
-    this.particles.forEach((p) => {
-      p.x += p.speedX;
-      p.y += p.speedY;
-
-      if (p.y > this.canvas.height) {
-        p.y = -10;
-        p.x = Math.random() * this.canvas.width;
+  function startProgress() {
+    const interval = setInterval(() => {
+      progress += Math.random() * 15;
+      if (progress >= 100) {
+        progress = 100;
+        clearInterval(interval);
+        setTimeout(finishBoot, 300);
       }
-      if (p.x > this.canvas.width) p.x = 0;
-      if (p.x < 0) p.x = this.canvas.width;
+      progressBar.style.width = `${progress}%`;
+    }, 100);
+  }
+
+  function finishBoot() {
+    gsap.to(bootScreen, {
+      opacity: 0,
+      duration: 0.5,
+      onComplete: () => {
+        bootScreen.style.display = "none";
+        initMainAnimations();
+      },
     });
   }
 
-  animate() {
-    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-    this.drawParticles();
-    this.updateParticles();
-    requestAnimationFrame(() => this.animate());
+  // Start
+  setTimeout(typeLines, 500);
+}
+
+// =========================================
+// 3. CUSTOM CURSOR
+// =========================================
+
+function initCursor() {
+  const dot = document.getElementById("cursor-dot");
+  const ring = document.getElementById("cursor-ring");
+
+  if (!dot || !ring) return;
+
+  // Only enable on desktop
+  if (window.innerWidth < 1025) return;
+
+  let mouseX = 0,
+    mouseY = 0;
+  let ringX = 0,
+    ringY = 0;
+
+  document.addEventListener("mousemove", (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+    dot.style.left = `${mouseX}px`;
+    dot.style.top = `${mouseY}px`;
+  });
+
+  // Smooth follow for ring
+  function animateRing() {
+    ringX += (mouseX - ringX) * 0.15;
+    ringY += (mouseY - ringY) * 0.15;
+    ring.style.left = `${ringX}px`;
+    ring.style.top = `${ringY}px`;
+    requestAnimationFrame(animateRing);
+  }
+  animateRing();
+
+  // Hover effects
+  const hoverTargets = document.querySelectorAll(
+    "a, button, .skill-card, .project-card, .stamp, .interest-tag, .tech-badge, .hackathon-card, .award-frame, .contact-btn",
+  );
+
+  hoverTargets.forEach((target) => {
+    target.addEventListener("mouseenter", () => ring.classList.add("hover"));
+    target.addEventListener("mouseleave", () => ring.classList.remove("hover"));
+  });
+}
+
+// =========================================
+// 4. NAVIGATION & UTILS
+// =========================================
+
+function initNavigation() {
+  const toggle = document.getElementById("nav-toggle");
+  const menu = document.getElementById("mobile-menu");
+  const links = document.querySelectorAll(".mobile-link, .nav-link");
+  const clockEl = document.getElementById("nav-clock");
+  const progressBar = document.getElementById("scroll-progress");
+  const backToTop = document.getElementById("back-to-top");
+
+  // Mobile Menu Toggle
+  if (toggle && menu) {
+    toggle.addEventListener("click", () => {
+      toggle.classList.toggle("active");
+      menu.classList.toggle("active");
+      document.body.style.overflow = menu.classList.contains("active")
+        ? "hidden"
+        : "";
+    });
+
+    links.forEach((link) => {
+      link.addEventListener("click", () => {
+        toggle.classList.remove("active");
+        menu.classList.remove("active");
+        document.body.style.overflow = "";
+      });
+    });
   }
 
-  addEventListeners() {
-    window.addEventListener("resize", () => {
-      this.resizeCanvas();
-      this.particleCount = window.innerWidth < 768 ? 50 : 100;
-      this.createParticles();
+  // Live Clock
+  function updateClock() {
+    const now = new Date();
+    const h = String(now.getHours()).padStart(2, "0");
+    const m = String(now.getMinutes()).padStart(2, "0");
+    const s = String(now.getSeconds()).padStart(2, "0");
+    if (clockEl) clockEl.textContent = `${h}:${m}:${s}`;
+  }
+  setInterval(updateClock, 1000);
+  updateClock();
+
+  // Scroll Progress
+  window.addEventListener("scroll", () => {
+    const scrollTop = window.scrollY;
+    const docHeight =
+      document.documentElement.scrollHeight - window.innerHeight;
+    const scrollPercent = (scrollTop / docHeight) * 100;
+    if (progressBar) progressBar.style.width = `${scrollPercent}%`;
+  });
+
+  // Keyboard Shortcuts (Alt + Number)
+  document.addEventListener("keydown", (e) => {
+    if (e.altKey) {
+      const sectionMap = {
+        1: "#about",
+        2: "#skills",
+        3: "#timeline",
+        4: "#projects",
+        5: "#experience",
+        6: "#contact",
+      };
+      if (sectionMap[e.key]) {
+        e.preventDefault();
+        document
+          .querySelector(sectionMap[e.key])
+          ?.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  });
+
+  // Back to Top
+  if (backToTop) {
+    backToTop.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
     });
   }
 }
 
-const particles = new VioletParticles();
+// =========================================
+// 5. HERO INTERACTIONS
+// =========================================
 
-// ============================================
-// GSAP SETUP
-// ============================================
-gsap.registerPlugin(ScrollTrigger);
+function initHero() {
+  const roleEl = document.getElementById("role-current");
+  if (!roleEl) return;
 
-// Refresh ScrollTrigger on load
-window.addEventListener("load", () => {
-  ScrollTrigger.refresh();
-});
+  let currentIndex = 0;
 
-// ============================================
-// HERO ANIMATIONS
-// ============================================
-const heroTL = gsap.timeline({ defaults: { ease: "power3.out" } });
+  setInterval(() => {
+    currentIndex = (currentIndex + 1) % ROLES.length;
 
-gsap.set(
-  ".hero-label, .hero-title .line, .hero-subtitle, .hero-divider, .scroll-indicator",
-  {
-    opacity: 0,
-    y: 30,
+    gsap.to(roleEl, {
+      y: -20,
+      opacity: 0,
+      duration: 0.3,
+      onComplete: () => {
+        roleEl.textContent = ROLES[currentIndex];
+        gsap.fromTo(
+          roleEl,
+          { y: 20, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.3 },
+        );
+      },
+    });
+  }, 2500);
+}
+
+// =========================================
+// 6. SKILLS LOGIC
+// =========================================
+
+function initSkills() {
+  const tabs = document.querySelectorAll(".skill-tab");
+  const grid = document.getElementById("skills-grid");
+  if (!grid) return;
+
+  function renderSkills(category) {
+    const skills = SKILLS_DATA[category] || [];
+    grid.innerHTML = "";
+
+    skills.forEach((skill, index) => {
+      const card = document.createElement("div");
+      card.className = "skill-card";
+      card.style.opacity = "0"; // For GSAP
+
+      // Determine level text
+      let levelText = "BEGINNER";
+      if (skill.level > 85) levelText = "EXPERT";
+      else if (skill.level > 70) levelText = "ADVANCED";
+      else if (skill.level > 50) levelText = "INTERMEDIATE";
+
+      card.innerHTML = `
+                <div class="skill-icon">
+                    <span class="iconify" data-icon="${skill.icon}" data-width="28"></span>
+                </div>
+                <div class="skill-name">${skill.name}</div>
+                <div class="skill-bar-container">
+                    <div class="skill-bar-fill" data-level="${skill.level}"></div>
+                </div>
+                <div class="skill-level">${levelText}</div>
+            `;
+
+      grid.appendChild(card);
+    });
+
+    // Re-initialize Iconify for new icons
+    if (window.Iconify) window.Iconify.scan();
+
+    // Animate In
+    gsap.to(".skill-card", {
+      opacity: 1,
+      y: 0,
+      stagger: 0.05,
+      duration: 0.4,
+      ease: "back.out(1.7)",
+      onStart: () => {
+        // Animate bars
+        document.querySelectorAll(".skill-bar-fill").forEach((bar) => {
+          const level = bar.getAttribute("data-level");
+          gsap.to(bar, {
+            width: `${level}%`,
+            duration: 1,
+            delay: 0.2,
+            ease: "power2.out",
+          });
+        });
+      },
+    });
   }
-);
-gsap.set(".hero-divider", { scaleX: 0 });
 
-heroTL
-  .to(".hero-label", { opacity: 1, y: 0, duration: 1, delay: 0.3 })
-  .to(
-    ".hero-title .line",
-    { opacity: 1, y: 0, stagger: 0.15, duration: 1 },
-    "-=0.5"
-  )
-  .to(".hero-subtitle", { opacity: 1, y: 0, duration: 0.8 }, "-=0.5")
-  .to(".hero-divider", { opacity: 1, scaleX: 1, duration: 0.6 }, "-=0.3")
-  .to(".scroll-indicator", { opacity: 1, y: 0, duration: 0.6 }, "-=0.2");
+  // Tab Click Handlers
+  tabs.forEach((tab) => {
+    tab.addEventListener("click", () => {
+      tabs.forEach((t) => t.classList.remove("active"));
+      tab.classList.add("active");
+      renderSkills(tab.getAttribute("data-category"));
+    });
+  });
 
-// ============================================
-// STATEMENT
-// ============================================
-gsap.from(".statement-quote", {
-  scrollTrigger: {
-    trigger: ".statement",
-    start: "top 80%",
-    end: "top 30%",
-    toggleActions: "play none none reverse",
-  },
-  opacity: 0,
-  y: 60,
-  duration: 1,
-  ease: "power3.out",
-});
+  // Initial Render
+  renderSkills("programming");
+}
 
-// ============================================
-// SECTION TITLES
-// ============================================
-gsap.utils.toArray(".section-title").forEach((title) => {
-  gsap.from(title, {
-    scrollTrigger: {
-      trigger: title,
-      start: "top 85%",
-      toggleActions: "play none none reverse",
-    },
+// =========================================
+// 7. GSAP SCROLL ANIMATIONS
+// =========================================
+
+function initMainAnimations() {
+  gsap.registerPlugin(ScrollTrigger);
+
+  // Hero Entrance
+  const heroTl = gsap.timeline();
+  heroTl
+    .from(".hero-badge", { y: 50, opacity: 0, duration: 0.6 })
+    .from(
+      ".hero-name-stroke",
+      { y: 100, opacity: 0, duration: 0.8, stagger: 0.2 },
+      "-=0.3",
+    )
+    .from(".role-container", { y: 30, opacity: 0, duration: 0.5 }, "-=0.4")
+    .from(
+      ".tagline-box",
+      { x: -50, opacity: 0, rotation: -5, duration: 0.6 },
+      "-=0.3",
+    )
+    .from(
+      ".hero-ctas .btn",
+      { y: 30, opacity: 0, duration: 0.4, stagger: 0.1 },
+      "-=0.3",
+    )
+    .from(
+      ".chaos-zone > *",
+      {
+        scale: 0,
+        opacity: 0,
+        rotation: 20,
+        duration: 0.6,
+        stagger: 0.1,
+        ease: "back.out(2)",
+      },
+      "-=0.5",
+    );
+
+  // Generic Section Headers
+  gsap.utils.toArray(".section-header").forEach((header) => {
+    gsap.from(header.children, {
+      scrollTrigger: { trigger: header, start: "top 80%" },
+      y: 50,
+      opacity: 0,
+      duration: 0.8,
+      stagger: 0.1,
+      ease: "power3.out",
+    });
+  });
+
+  // About Section
+  gsap.from(".dossier-photo", {
+    scrollTrigger: { trigger: ".about-dossier", start: "top 70%" },
+    scale: 0.8,
     opacity: 0,
+    rotation: 10,
+    duration: 0.8,
+    ease: "back.out(1.7)",
+  });
+
+  // gsap.from(".stamp", {
+  //   scrollTrigger: { trigger: ".personality-stamps", start: "top 80%" },
+  //   scale: 0,
+  //   opacity: 0,
+  //   rotation: -20,
+  //   duration: 0.5,
+  //   stagger: 0.05,
+  //   ease: "back.out(2)",
+  // });
+
+  // Education Gauge
+  gsap.to(".cgpa-fill", {
+    scrollTrigger: { trigger: ".edu-cgpa", start: "top 80%" },
+    width: "81.2%", // 8.12/10
+    duration: 1.5,
+    ease: "power2.out",
+  });
+
+  // Timeline
+  gsap.utils.toArray(".timeline-item").forEach((item, i) => {
+    gsap.from(item.querySelector(".timeline-card"), {
+      scrollTrigger: { trigger: item, start: "top 75%" },
+      x: item.classList.contains("timeline-left") ? -100 : 100,
+      opacity: 0,
+      duration: 0.8,
+      ease: "power3.out",
+    });
+  });
+
+  // Timeline Vehicle Movement
+  const wrapper = document.querySelector(".timeline-wrapper");
+  const road = document.querySelector(".timeline-road");
+  const rocket = document.querySelector(".timeline-vehicle");
+
+  if (wrapper && road && rocket) {
+    gsap.to(rocket, {
+      y: () => {
+        return road.offsetHeight - rocket.offsetHeight;
+      },
+
+      ease: "none",
+
+      scrollTrigger: {
+        trigger: wrapper,
+        start: "top top",
+        end: "bottom bottom",
+        scrub: true,
+        invalidateOnRefresh: true,
+      },
+    });
+  }
+
+  // Projects
+  gsap.utils.toArray(".project-card").forEach((card, i) => {
+    gsap.from(card, {
+      scrollTrigger: { trigger: card, start: "top 85%" },
+      y: 80,
+      opacity: 0,
+      duration: 0.6,
+      delay: i * 0.1,
+      ease: "power3.out",
+    });
+  });
+
+  // Awards
+  gsap.utils.toArray(".award-frame").forEach((frame, i) => {
+    gsap.from(frame, {
+      scrollTrigger: { trigger: frame, start: "top 85%" },
+      y: 50,
+      opacity: 0,
+      rotation: -10,
+      duration: 0.6,
+      delay: i * 0.05,
+      ease: "back.out(1.5)",
+    });
+  });
+
+  // Contact Terminal
+  gsap.from(".contact-terminal", {
+    scrollTrigger: { trigger: ".contact-section", start: "top 70%" },
     y: 50,
+    opacity: 0,
     duration: 0.8,
     ease: "power3.out",
   });
+}
+
+// =========================================
+// 8. TOGGLES (THEME & CHAOS)
+// =========================================
+
+function initToggles() {
+  const themeToggle = document.getElementById("theme-toggle");
+  const chaosToggle = document.getElementById("chaos-toggle");
+
+  // Theme
+  if (themeToggle) {
+    // Load saved theme
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme === "dark") document.body.classList.add("dark-mode");
+
+    themeToggle.addEventListener("click", () => {
+      document.body.classList.toggle("dark-mode");
+      const isDark = document.body.classList.contains("dark-mode");
+      localStorage.setItem("theme", isDark ? "dark" : "light");
+    });
+  }
+
+  // Chaos
+  if (chaosToggle) {
+    chaosToggle.addEventListener("click", () => {
+      document.body.classList.toggle("chaos-mode");
+      chaosToggle.classList.toggle("active");
+    });
+  }
+}
+
+// =========================================
+// 9. INITIALIZATION
+// =========================================
+
+document.addEventListener("DOMContentLoaded", () => {
+  initBootSequence();
+  initCursor();
+  initNavigation();
+  initHero();
+  initSkills();
+  initToggles();
 });
-
-// ============================================
-// ABOUT SECTION
-// ============================================
-gsap.from(".about-text p", {
-  scrollTrigger: {
-    trigger: ".about-text",
-    start: "top 80%",
-    toggleActions: "play none none reverse",
-  },
-  opacity: 0,
-  y: 40,
-  stagger: 0.2,
-  duration: 0.8,
-  ease: "power3.out",
-});
-
-gsap.from(".detail-item", {
-  scrollTrigger: {
-    trigger: ".about-details",
-    start: "top 80%",
-    toggleActions: "play none none reverse",
-  },
-  opacity: 0,
-  x: 40,
-  stagger: 0.15,
-  duration: 0.8,
-  ease: "power3.out",
-});
-
-// ============================================
-// EXPERTISE SECTION
-// ============================================
-gsap.utils.toArray(".expertise-category").forEach((category, i) => {
-  gsap.from(category, {
-    scrollTrigger: {
-      trigger: category,
-      start: "top 85%",
-      toggleActions: "play none none reverse",
-    },
-    opacity: 0,
-    x: -60,
-    duration: 0.8,
-    delay: i * 0.1,
-    ease: "power3.out",
-  });
-});
-
-// ============================================
-// CLEAN PROGRESS TREE ANIMATIONS (FIXED)
-// ============================================
-
-// Animate progress nodes
-gsap.utils.toArray(".progress-node").forEach((node, i) => {
-  const isOdd = (i + 1) % 2 !== 0; // Check if odd (1st, 3rd, etc.)
-
-  gsap.from(node.querySelector(".node-card"), {
-    scrollTrigger: {
-      trigger: node,
-      start: "top 85%",
-      toggleActions: "play none none reverse",
-    },
-    opacity: 0,
-    x: isOdd ? -80 : 80, // Slide from left for odd, right for even
-    duration: 0.8,
-    ease: "power3.out",
-  });
-
-  gsap.from(node.querySelector(".node-marker"), {
-    scrollTrigger: {
-      trigger: node,
-      start: "top 85%",
-      toggleActions: "play none none reverse",
-    },
-    opacity: 0,
-    scale: 0,
-    duration: 0.6,
-    delay: 0.2,
-    ease: "back.out(2)",
-  });
-});
-
-// Animate timeline line (draw from top to bottom)
-gsap.from(".tree-timeline", {
-  scrollTrigger: {
-    trigger: ".progress-tree",
-    start: "top 80%",
-    toggleActions: "play none none reverse",
-  },
-  scaleY: 0,
-  transformOrigin: "top center",
-  duration: 1.2,
-  ease: "power2.out",
-});
-
-// Animate title
-gsap.from(".progress-tree-title", {
-  scrollTrigger: {
-    trigger: ".progress-tree-container",
-    start: "top 80%",
-    toggleActions: "play none none reverse",
-  },
-  opacity: 0,
-  y: 30,
-  duration: 0.8,
-  ease: "power3.out",
-});
-
-// Add interactive line highlighting
-document.querySelectorAll(".progress-node").forEach((node) => {
-  node.addEventListener("mouseenter", () => {
-    const timeline = document.querySelector(".tree-timeline");
-    timeline.style.background = `linear-gradient(
-            to bottom,
-            transparent,
-            var(--violet-bright) 10%,
-            var(--violet-bright) 50%,
-            var(--violet-bright) 90%,
-            transparent
-        )`;
-  });
-
-  node.addEventListener("mouseleave", () => {
-    const timeline = document.querySelector(".tree-timeline");
-    timeline.style.background = `linear-gradient(
-            to bottom,
-            transparent,
-            var(--violet-dark) 10%,
-            var(--violet) 50%,
-            var(--violet-bright) 90%,
-            transparent
-        )`;
-  });
-});
-
-// ============================================
-// PROJECTS - FIXED
-// ============================================
-gsap.utils.toArray(".project-item").forEach((project, i) => {
-  gsap.from(project, {
-    scrollTrigger: {
-      trigger: project,
-      start: "top 85%",
-      toggleActions: "play none none reverse",
-    },
-    opacity: 0,
-    y: 80,
-    duration: 0.8,
-    delay: i * 0.15,
-    ease: "power3.out",
-  });
-});
-
-// ============================================
-// ACHIEVEMENTS - FIXED
-// ============================================
-gsap.utils.toArray(".achievement-item").forEach((item, i) => {
-  gsap.from(item, {
-    scrollTrigger: {
-      trigger: item,
-      start: "top 90%",
-      toggleActions: "play none none reverse",
-    },
-    opacity: 0,
-    y: 60,
-    scale: 0.95,
-    duration: 0.7,
-    delay: i * 0.1,
-    ease: "power3.out",
-  });
-});
-
-// ============================================
-// CONTACT SECTION
-// ============================================
-gsap.from(".contact-item", {
-  scrollTrigger: {
-    trigger: ".contact-info",
-    start: "top 80%",
-    toggleActions: "play none none reverse",
-  },
-  opacity: 0,
-  y: 30,
-  stagger: 0.1,
-  duration: 0.7,
-  ease: "power3.out",
-});
-
-gsap.from(".contact-cta", {
-  scrollTrigger: {
-    trigger: ".contact-cta",
-    start: "top 85%",
-    toggleActions: "play none none reverse",
-  },
-  opacity: 0,
-  y: 40,
-  duration: 0.8,
-  ease: "power3.out",
-});
-
-// ============================================
-// OUTRO
-// ============================================
-gsap.from(".outro-content > *", {
-  scrollTrigger: {
-    trigger: ".outro",
-    start: "top 80%",
-    toggleActions: "play none none reverse",
-  },
-  opacity: 0,
-  y: 30,
-  stagger: 0.15,
-  duration: 0.8,
-  ease: "power3.out",
-});
-
-// ============================================
-// SMOOTH SCROLL
-// ============================================
-document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-  anchor.addEventListener("click", function (e) {
-    e.preventDefault();
-    const target = document.querySelector(this.getAttribute("href"));
-    if (target) {
-      target.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
-    }
-  });
-});
-
-// ============================================
-// CUSTOM CURSOR
-// ============================================
-const cursor = document.createElement("div");
-cursor.className = "cursor";
-document.body.appendChild(cursor);
-
-const cursorStyle = document.createElement("style");
-cursorStyle.textContent = `
-    .cursor {
-        position: fixed;
-        width: 20px;
-        height: 20px;
-        border: 2px solid var(--violet);
-        border-radius: 50%;
-        pointer-events: none;
-        z-index: 9999;
-        transition: transform 0.2s ease, opacity 0.3s, background 0.2s;
-        opacity: 0;
-        transform: translate(-50%, -50%);
-    }
-    .cursor.active {
-        transform: translate(-50%, -50%) scale(1.5);
-        background: rgba(139, 92, 246, 0.2);
-    }
-    @media (max-width: 768px) {
-        .cursor { display: none; }
-    }
-`;
-document.head.appendChild(cursorStyle);
-
-document.addEventListener("mousemove", (e) => {
-  cursor.style.left = e.clientX + "px";
-  cursor.style.top = e.clientY + "px";
-  cursor.style.opacity = "1";
-});
-
-document
-  .querySelectorAll(
-    "a, button, .project-item, .achievement-item, .expertise-tag, .tag, .progress-node"
-  )
-  .forEach((el) => {
-    el.addEventListener("mouseenter", () => cursor.classList.add("active"));
-    el.addEventListener("mouseleave", () => cursor.classList.remove("active"));
-  });
-
-// ============================================
-// CONSOLE SIGNATURE
-// ============================================
-console.log(
-  "%c Designed by Siva Prakash ",
-  "background: linear-gradient(135deg, #8B5CF6, #A78BFA); color: #FFF; font-size: 16px; padding: 10px 20px; font-weight: bold; border-radius: 4px;"
-);
-console.log(
-  "%c Cinematic. Premium. Unforgettable. ",
-  "color: #A78BFA; font-size: 14px; font-style: italic; padding: 8px 0;"
-);

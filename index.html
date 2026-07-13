@@ -3,391 +3,1010 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Siva Prakash — Creative Developer</title>
+    <title>Sivaprakash | Developer Portfolio</title>
+    <meta name="description" content="Sivaprakash — Application Developer, Full Stack Developer, AI Engineer. Building Enterprise Software, AI Applications & Scalable Systems.">
     
-    <!-- Fonts -->
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700;900&display=block" rel="stylesheet">
+    
+    <!-- Iconify -->
+    <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
     
     <!-- GSAP + ScrollTrigger -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     
+    <!-- Styles -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-    <!-- Canvas Background -->
-    <canvas id="particleCanvas"></canvas>
-
-    <!-- Film Grain -->
-    <div class="grain"></div>
-
-    <!-- Frame Border -->
-    <div class="frame-border">
-        <div class="frame-corner frame-top-left"></div>
-        <div class="frame-corner frame-top-right"></div>
-        <div class="frame-corner frame-bottom-left"></div>
-        <div class="frame-corner frame-bottom-right"></div>
+    <!-- ==================== BOOT SEQUENCE ==================== -->
+    <div id="boot-screen" class="boot-screen">
+        <div class="boot-content">
+            <div class="boot-logo">
+                <span class="boot-bracket">&gt;</span> PORTFOLIO
+            </div>
+            <div class="boot-lines" id="boot-lines">
+                <!-- Lines injected by JS -->
+            </div>
+            <div class="boot-progress">
+                <div class="boot-progress-bar" id="boot-progress-bar"></div>
+            </div>
+            <button class="boot-skip" id="boot-skip">SKIP &gt;&gt;</button>
+        </div>
     </div>
 
-    <!-- Main Container -->
-    <main class="container">
+    <!-- ==================== CUSTOM CURSOR ==================== -->
+    <div class="cursor-dot" id="cursor-dot"></div>
+    <div class="cursor-ring" id="cursor-ring"></div>
 
-        <!-- ============================================ -->
-        <!-- HERO -->
-        <!-- ============================================ -->
-        <section class="section hero" id="hero">
-            <div class="hero-content">
-                <div class="hero-label">Creative Developer</div>
-                <h1 class="hero-title">
-                    <span class="line">SIVAPRAKASH</span>
-                </h1>
-                <p class="hero-subtitle">Engineering experiences that move people</p>
-                <div class="hero-divider"></div>
-            </div>
-            <div class="scroll-indicator">
-                <span>Scroll to explore</span>
-                <div class="scroll-line"></div>
-            </div>
-        </section>
-
-        <!-- ============================================ -->
-        <!-- STATEMENT -->
-        <!-- ============================================ -->
-        <section class="section statement" id="statement">
-            <div class="statement-content">
-                <blockquote class="statement-quote">
-                    "Code is poetry.<br/>Design is cinema.<br/>Experience is everything."
-                </blockquote>
-            </div>
-        </section>
-
-        <!-- ============================================ -->
-        <!-- ABOUT -->
-        <!-- ============================================ -->
-        <section class="section about" id="about">
-            <div class="section-content">
-                <h2 class="section-title">About</h2>
-                <div class="about-grid">
-                    <div class="about-text">
-                        <p class="lead">I'm a full-stack developer and mobile engineer specializing in building innovative digital experiences.</p>
-                        <p>Currently pursuing Computer Science and Engineering at Anand Institute of Higher Technology with a passion for crafting seamless interfaces and intelligent systems.</p>
-                        <p>I believe in the intersection of technology and artistry — where code becomes experience, and logic becomes emotion.</p>
-                    </div>
-                    <div class="about-details">
-                        <div class="detail-item">
-                            <span class="detail-label">Based in</span>
-                            <span class="detail-value" href="https://maps.app.goo.gl/STxBVuKp1LDc7NDF6">Chennai, India</span>
-                        </div>
-                        <div class="detail-item">
-                            <span class="detail-label">Education</span>
-                            <span class="detail-value">B.E. CSE — CGPA 8.5</span>
-                        </div>
-                        <div class="detail-item">
-                            <span class="detail-label">Years Active</span>
-                            <span class="detail-value">2023 — Present</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-<!-- ============================================ -->
-<!-- EXPERTISE (CLEAN PROGRESS TREE) -->
-<!-- ============================================ -->
-<section class="section skills" id="skills">
-    <div class="section-content">
-        <h2 class="section-title">Expertise</h2>
-        
-        <!-- Skill Categories -->
-        <div class="expertise-wrapper">
-            
-            <div class="expertise-category">
-                <div class="expertise-header">
-                    <span class="expertise-number">01</span>
-                    <h3 class="expertise-title">Languages</h3>
-                </div>
-                <div class="expertise-items">
-                    <span class="expertise-tag">C / C++</span>
-                    <span class="expertise-tag">Java</span>
-                    <span class="expertise-tag">Kotlin</span>
-                    <span class="expertise-tag">Dart</span>
-                    <span class="expertise-tag">Python</span>
-                </div>
-            </div>
-
-            <div class="expertise-category">
-                <div class="expertise-header">
-                    <span class="expertise-number">02</span>
-                    <h3 class="expertise-title">Web Technologies</h3>
-                </div>
-                <div class="expertise-items">
-                    <span class="expertise-tag">HTML / CSS</span>
-                    <span class="expertise-tag">JavaScript</span>
-                    <span class="expertise-tag">React</span>
-                    <span class="expertise-tag">Node.js</span>
-                    <span class="expertise-tag">Full-Stack</span>
-                </div>
-            </div>
-
-            <div class="expertise-category">
-                <div class="expertise-header">
-                    <span class="expertise-number">03</span>
-                    <h3 class="expertise-title">Mobile Development</h3>
-                </div>
-                <div class="expertise-items">
-                    <span class="expertise-tag">Flutter</span>
-                    <span class="expertise-tag">Android Studio</span>
-                    <span class="expertise-tag">Cross-Platform</span>
-                    <span class="expertise-tag">BLE Integration</span>
-                </div>
-            </div>
-
-            <div class="expertise-category">
-                <div class="expertise-header">
-                    <span class="expertise-number">04</span>
-                    <h3 class="expertise-title">Specializations</h3>
-                </div>
-                <div class="expertise-items">
-                    <span class="expertise-tag">AI Fine-Tuning</span>
-                    <span class="expertise-tag">Hugging Face</span>
-                    <span class="expertise-tag">IoT Systems</span>
-                    <span class="expertise-tag">Rapid Prototyping</span>
-                </div>
-            </div>
-
+    <!-- ==================== FLOATING DECORATIONS ==================== -->
+    <div class="floating-elements" id="floating-elements">
+        <div class="float-star float-star-1">
+            <span class="iconify" data-icon="mdi:star-four-points" data-width="24"></span>
         </div>
+        <div class="float-star float-star-2">
+            <span class="iconify" data-icon="mdi:star-four-points" data-width="18"></span>
+        </div>
+        <div class="float-star float-star-3">
+            <span class="iconify" data-icon="mdi:star-four-points" data-width="30"></span>
+        </div>
+        <div class="float-arrow float-arrow-1">
+            <span class="iconify" data-icon="mdi:arrow-top-right-thick" data-width="20"></span>
+        </div>
+        <div class="float-circle float-circle-1"></div>
+        <div class="float-square float-square-1"></div>
+    </div>
 
-        <!-- CLEAN PROGRESS TREE -->
-        <div class="progress-tree-container">
-            <h3 class="progress-tree-title">Growth Journey</h3>
+    <!-- ==================== NAVIGATION ==================== -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#hero" class="nav-logo">
+                <span class="logo-box">PORTFOLIO</span>
+            </a>
             
-            <div class="progress-tree">
-                
-                <!-- Vertical Timeline Line -->
-                <div class="tree-timeline"></div>
+            <div class="nav-links" id="nav-links">
+                <a href="#about" class="nav-link" data-section="about">
+                    <span class="nav-shortcut">ALT+1</span>
+                    ABOUT
+                </a>
+                <a href="#skills" class="nav-link" data-section="skills">
+                    <span class="nav-shortcut">ALT+2</span>
+                    SKILLS
+                </a>
+                <a href="#timeline" class="nav-link" data-section="timeline">
+                    <span class="nav-shortcut">ALT+3</span>
+                    JOURNEY
+                </a>
+                <a href="#projects" class="nav-link" data-section="projects">
+                    <span class="nav-shortcut">ALT+4</span>
+                    PROJECTS
+                </a>
+                <a href="#experience" class="nav-link" data-section="experience">
+                    <span class="nav-shortcut">ALT+5</span>
+                    EXPERIENCE
+                </a>
+                <a href="#contact" class="nav-link" data-section="contact">
+                    <span class="nav-shortcut">ALT+6</span>
+                    CONTACT
+                </a>
+            </div>
 
-                <!-- Progress Nodes -->
-                <div class="progress-node" data-step="1">
-                    <div class="node-marker">
-                        <span class="node-dot"></span>
-                    </div>
-                    <div class="node-card">
-                        <span class="node-year">2023</span>
-                        <h4 class="node-title">Started Journey</h4>
-                        <p class="node-desc">Began Computer Science studies, learned fundamentals</p>
-                    </div>
+            <div class="nav-right">
+                <div class="nav-status">
+                    <span class="status-dot"></span>
+                    <span class="status-text">ONLINE</span>
                 </div>
-
-                <div class="progress-node" data-step="2">
-                    <div class="node-marker">
-                        <span class="node-dot"></span>
-                    </div>
-                    <div class="node-card">
-                        <span class="node-year">2024</span>
-                        <h4 class="node-title">Advanced Mobile Dev</h4>
-                        <p class="node-desc">Mastered Flutter, built cross-platform applications</p>
-                    </div>
-                </div>
-
-                <div class="progress-node" data-step="3">
-                    <div class="node-marker">
-                        <span class="node-dot"></span>
-                    </div>
-                    <div class="node-card">
-                        <span class="node-year">2025</span>
-                        <h4 class="node-title">AI Integration</h4>
-                        <p class="node-desc">Integrated AI/ML, participated in national hackathons</p>
-                    </div>
-                </div>
-
-                <div class="progress-node active" data-step="4">
-                    <div class="node-marker">
-                        <span class="node-dot"></span>
-                        <span class="node-glow"></span>
-                    </div>
-                    <div class="node-card">
-                        <span class="node-year">Present</span>
-                        <h4 class="node-title">Full-Stack Mastery</h4>
-                        <p class="node-desc">Building end-to-end solutions, leading projects</p>
-                        <div class="node-badge">Current</div>
-                    </div>
-                </div>
-
+                <div class="nav-clock" id="nav-clock">00:00:00</div>
+                <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu">
+                    <span class="toggle-bar"></span>
+                    <span class="toggle-bar"></span>
+                    <span class="toggle-bar"></span>
+                </button>
             </div>
         </div>
 
-    </div>
-</section>
+        <!-- Mobile Menu -->
+        <div class="mobile-menu" id="mobile-menu">
+            <a href="#about" class="mobile-link">ABOUT</a>
+            <a href="#skills" class="mobile-link">SKILLS</a>
+            <a href="#timeline" class="mobile-link">JOURNEY</a>
+            <a href="#projects" class="mobile-link">PROJECTS</a>
+            <a href="#experience" class="mobile-link">EXPERIENCE</a>
+            <a href="#awards" class="mobile-link">AWARDS</a>
+            <a href="#contact" class="mobile-link">CONTACT</a>
+            <div class="mobile-footer">
+                <span>STATUS: ONLINE</span>
+                <span class="status-dot"></span>
+            </div>
+        </div>
+    </nav>
 
-        <!-- ============================================ -->
-        <!-- PROJECTS (FIXED) -->
-        <!-- ============================================ -->
-        <section class="section projects" id="projects">
-            <div class="section-content">
-                <h2 class="section-title">Selected Work</h2>
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress" id="scroll-progress"></div>
+
+    <!-- ==================== MAIN CONTENT ==================== -->
+    <main>
+        <!-- ==================== HERO SECTION ==================== -->
+        <section id="hero" class="section hero-section">
+            <div class="container">
+                <div class="hero-grid">
+                    <!-- Left Side -->
+                    <div class="hero-left">
+                        <div class="hero-badge">
+                            <span class="badge-dot"></span>
+                            AVAILABLE FOR WORK
+                        </div>
+                        
+                        <h1 class="hero-name">
+                            <span class="hero-name-stroke">SIVA</span><br>
+                            <span class="hero-name-stroke">PRAKASH</span>
+                        </h1>
+                        
+                        <div class="hero-roles">
+                            <div class="role-container">
+                                <span class="role-current" id="role-current">APPLICATION DEVELOPER</span>
+                                <span class="role-arrow">&#9660;</span>
+                            </div>
+                        </div>
+                        
+                        <div class="hero-tagline">
+                            <div class="tagline-box">
+                                <span class="iconify" data-icon="mdi:lightning-bolt" data-width="20"></span>
+                                Building Enterprise Software, AI Applications, Mobile Experiences & Scalable Systems.
+                            </div>
+                        </div>
+                        
+                        <div class="hero-quote">
+                            <span class="quote-mark">"</span>
+                            Code is poetry written in logic.
+                            <span class="quote-mark">"</span>
+                        </div>
+                        
+                        <div class="hero-ctas">
+                            <a href="#projects" class="btn btn-primary">
+                                <span class="iconify" data-icon="mdi:folder-open" data-width="20"></span>
+                                VIEW PROJECTS
+                            </a>
+                            <a href="#contact" class="btn btn-secondary">
+                                <span class="iconify" data-icon="mdi:download" data-width="20"></span>
+                                DOWNLOAD CV
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Right Side - Chaos Zone -->
+                    <div class="hero-right">
+                        <div class="chaos-zone">
+                            <div class="chaos-circle">
+                                <span class="chaos-initials">SP</span>
+                            </div>
+                            <div class="chaos-badge chaos-badge-1">
+                                <span class="iconify" data-icon="mdi:star" data-width="16"></span>
+                                8.12 CGPA
+                            </div>
+                            <div class="chaos-badge chaos-badge-2">
+                                2023-2027
+                            </div>
+                            <div class="chaos-badge chaos-badge-3">
+                                TAMIL NADU
+                            </div>
+                            <div class="chaos-star chaos-star-1">
+                                <span class="iconify" data-icon="mdi:star-four-points" data-width="40"></span>
+                            </div>
+                            <div class="chaos-star chaos-star-2">
+                                <span class="iconify" data-icon="mdi:star-four-points" data-width="28"></span>
+                            </div>
+                            <div class="chaos-arrow">
+                                <span class="iconify" data-icon="mdi:arrow-left-thick" data-width="32"></span>
+                            </div>
+                            <div class="chaos-number">25</div>
+                            <div class="chaos-dots"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Hero Background Pattern -->
+            <div class="hero-bg-pattern"></div>
+        </section>
+
+        <!-- ==================== MARQUEE DIVIDER ==================== -->
+        <div class="marquee-section">
+            <div class="marquee-track">
+                <span>JAVA</span>
+                <span>•</span>
+                <span>KOTLIN</span>
+                <span>•</span>
+                <span>DART</span>
+                <span>•</span>
+                <span>PYTHON</span>
+                <span>•</span>
+                <span>JAVASCRIPT</span>
+                <span>•</span>
+                <span>TYPESCRIPT</span>
+                <span>•</span>
+                <span>SPRING BOOT</span>
+                <span>•</span>
+                <span>FLUTTER</span>
+                <span>•</span>
+                <span>REACT</span>
+                <span>•</span>
+                <span>FASTAPI</span>
+                <span>•</span>
+                <span>POSTGRESQL</span>
+                <span>•</span>
+                <span>DOCKER</span>
+                <span>•</span>
+                <span>AI</span>
+
+                <!-- Duplicate -->
+                <span>JAVA</span>
+                <span>•</span>
+                <span>KOTLIN</span>
+                <span>•</span>
+                <span>DART</span>
+                <span>•</span>
+                <span>PYTHON</span>
+                <span>•</span>
+                <span>JAVASCRIPT</span>
+                <span>•</span>
+                <span>TYPESCRIPT</span>
+                <span>•</span>
+                <span>SPRING BOOT</span>
+                <span>•</span>
+                <span>FLUTTER</span>
+                <span>•</span>
+                <span>REACT</span>
+                <span>•</span>
+                <span>FASTAPI</span>
+                <span>•</span>
+                <span>POSTGRESQL</span>
+                <span>•</span>
+                <span>DOCKER</span>
+                <span>•</span>
+                <span>AI</span>
+            </div>
+        </div>
+
+        <!-- ==================== ABOUT SECTION ==================== -->
+        <section id="about" class="section about-section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-label">001</span>
+                    <h2 class="section-title">ABOUT ME</h2>
+                    <span class="section-line"></span>
+                </div>
                 
-                <div class="project-list">
+                <div class="about-dossier">
+                    <div class="dossier-tab">
+                        <span class="iconify" data-icon="mdi:file-account" data-width="20"></span>
+                        CLASSIFIED DOSSIER
+                    </div>
                     
-                    <!-- Project 1 -->
-                    <article class="project-item" data-project="1">
-                        <div class="project-number">01</div>
-                        <div class="project-content">
-                            <div class="project-header">
-                                <h3 class="project-title">Intellithon '25</h3>
-                                <span class="project-year">2025</span>
+                    <div class="dossier-content">
+                        <div class="dossier-left">
+                            <div class="dossier-photo">
+                                <div class="photo-placeholder">
+                                    <span class="iconify" data-icon="mdi:account-circle" data-width="80"></span>
+                                    <span class="photo-label">SIVAPRAKASH</span>
+                                </div>
+                                <div class="photo-badge">
+                                    DEV
+                                </div>
                             </div>
-                            <p class="project-subtitle">National Hackathon — 24hr Build</p>
-                            <p class="project-description">
-                                Built a full-stack web application in 24 hours as part of a 4-member team for a national-level hackathon. Integrated AI fine-tuning with Hugging Face, React frontend, and backend services to solve a real-world problem statement.
-                            </p>
-                            <div class="project-tags">
-                                <span class="tag">React</span>
-                                <span class="tag">AI / ML</span>
-                                <span class="tag">Hugging Face</span>
-                                <span class="tag">Full-Stack</span>
-                                <span class="tag">Team Leadership</span>
+                            
+                            <div class="dossier-bio">
+                                <p>I am a <strong>Computer Science Engineering</strong> student from <strong>Anand Institute of Higher Technology (AIHT)</strong>, Tamil Nadu.</p>
+                                <p>I love building <strong>complete software products</strong> rather than simple projects. I enjoy solving real-world problems using modern technologies.</p>
+                                <p>I focus on creating <strong>production-ready applications</strong> with clean architecture, scalable backend systems, beautiful user interfaces, AI integrations, and excellent user experiences.</p>
+                                <p>I constantly learn new technologies and enjoy challenging myself through hackathons, internships, and personal projects.</p>
                             </div>
-                        </div>
-                    </article>
-
-                    <!-- Project 2 -->
-                    <article class="project-item" data-project="2">
-                        <div class="project-number">02</div>
-                        <div class="project-content">
-                            <div class="project-header">
-                                <h3 class="project-title">Smart Attendance System</h3>
-                                <span class="project-year">2025</span>
-                            </div>
-                            <p class="project-subtitle">BLE-Based Mobile Application</p>
-                            <p class="project-description">
-                                Designed and developed a mobile application using Flutter and Bluetooth Low Energy (BLE) for automatic attendance marking. Eliminates manual roll calls and reduces proxy attendance. Presented during College Innovators Day.
-                            </p>
-                            <div class="project-tags">
-                                <span class="tag">Flutter</span>
-                                <span class="tag">BLE</span>
-                                <span class="tag">IoT</span>
-                                <span class="tag">Mobile App</span>
-                                <span class="tag">Innovation</span>
+                            
+                            <div class="dossier-quote">
+                                <span class="quote-mark-lg">"</span>
+                                I don't build projects. I build products.
+                                <span class="quote-mark-lg">"</span>
                             </div>
                         </div>
-                    </article>
-
+                        
+                        <div class="dossier-right">
+                            <div class="personality-section">
+                                <h3 class="dossier-subtitle">PERSONALITY MATRIX</h3>
+                                <div class="personality-stamps">
+                                    <span class="stamp stamp-red">CURIOUS</span>
+                                    <span class="stamp stamp-yellow">PROBLEM SOLVER</span>
+                                    <span class="stamp stamp-violet">FAST LEARNER</span>
+                                    <span class="stamp stamp-red">CREATIVE THINKER</span>
+                                    <span class="stamp stamp-yellow">TEAM PLAYER</span>
+                                    <span class="stamp stamp-violet">DETAIL ORIENTED</span>
+                                    <span class="stamp stamp-red">PRODUCT MINDED</span>
+                                    <span class="stamp stamp-yellow">ALWAYS EXPLORING</span>
+                                </div>
+                            </div>
+                            
+                            <div class="interests-section">
+                                <h3 class="dossier-subtitle">INTERESTS</h3>
+                                <div class="interest-tags">
+                                    <span class="interest-tag tag-lg">Enterprise Software</span>
+                                    <span class="interest-tag tag-lg">AI Engineering</span>
+                                    <span class="interest-tag tag-md">Backend Systems</span>
+                                    <span class="interest-tag tag-md">Mobile Development</span>
+                                    <span class="interest-tag tag-md">Web Development</span>
+                                    <span class="interest-tag tag-sm">UI/UX</span>
+                                    <span class="interest-tag tag-sm">Product Design</span>
+                                    <span class="interest-tag tag-sm">IoT</span>
+                                    <span class="interest-tag tag-sm">Automation</span>
+                                    <span class="interest-tag tag-sm">Developer Tools</span>
+                                </div>
+                            </div>
+                            
+                            <div class="goal-section">
+                                <div class="goal-box">
+                                    <span class="iconify" data-icon="mdi:rocket-launch" data-width="24"></span>
+                                    <p>My goal is to become a software engineer capable of building products used by <strong>millions of users</strong>.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- ============================================ -->
-        <!-- RECOGNITION (FIXED) -->
-        <!-- ============================================ -->
-        <section class="section achievements" id="achievements">
-            <div class="section-content">
-                <h2 class="section-title">Recognition</h2>
-                <div class="achievement-grid">
+        <!-- ==================== EDUCATION SECTION ==================== -->
+        <section id="education" class="section education-section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-label">002</span>
+                    <h2 class="section-title">EDUCATION</h2>
+                    <span class="section-line"></span>
+                </div>
+                
+                <div class="education-grid">
+                    <div class="edu-card edu-college">
+                        <div class="edu-card-header">
+                            <span class="iconify" data-icon="mdi:school" data-width="28"></span>
+                            UNIVERSITY
+                        </div>
+                        <div class="edu-card-body">
+                            <h3 class="edu-name">Anand Institute of Higher Technology</h3>
+                            <p class="edu-course">Computer Science and Engineering</p>
+                            <div class="edu-period">
+                                <span class="iconify" data-icon="mdi:calendar" data-width="16"></span>
+                                2023 – 2027
+                            </div>
+                            <div class="edu-cgpa">
+                                <div class="cgpa-label">CGPA</div>
+                                <div class="cgpa-gauge">
+                                    <div class="cgpa-fill" data-value="8.12"></div>
+                                    <span class="cgpa-value">8.12</span>
+                                </div>
+                                <div class="cgpa-max">/ 10.0</div>
+                            </div>
+                        </div>
+                        <div class="edu-card-decoration">
+                            <div class="blueprint-grid"></div>
+                        </div>
+                    </div>
                     
-                    <!-- Achievement 1 -->
-                    <div class="achievement-item" data-achievement="1">
-                        <div class="achievement-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="8" r="6"/>
-                                <path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/>
-                            </svg>
+                    <div class="edu-card edu-school">
+                        <div class="edu-card-header">
+                            <span class="iconify" data-icon="mdi:certificate" data-width="28"></span>
+                            HIGHER SECONDARY
                         </div>
-                        <h3 class="achievement-title">Intellithon'25</h3>
-                        <p class="achievement-desc">National Level Hackathon Participant</p>
-                    </div>
-
-                    <!-- Achievement 2 -->
-                    <div class="achievement-item" data-achievement="2">
-                        <div class="achievement-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
-                            </svg>
+                        <div class="edu-card-body">
+                            <h3 class="edu-name">St. Mary's Matriculation Higher Secondary School</h3>
+                            <p class="edu-course">Higher Secondary Education</p>
+                            <div class="edu-period">
+                                <span class="iconify" data-icon="mdi:calendar-check" data-width="16"></span>
+                                Completed 2023
+                            </div>
                         </div>
-                        <h3 class="achievement-title">Innovators Day</h3>
-                        <p class="achievement-desc">Featured Presenter at College</p>
-                    </div>
-
-                    <!-- Achievement 3 -->
-                    <div class="achievement-item" data-achievement="3">
-                        <div class="achievement-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
-                                <polyline points="22 4 12 14.01 9 11.01"/>
-                            </svg>
+                        <div class="edu-card-decoration">
+                            <div class="blueprint-grid"></div>
                         </div>
-                        <h3 class="achievement-title">CGPA 8.5</h3>
-                        <p class="achievement-desc">Academic Excellence</p>
-                    </div>
-
-                    <!-- Achievement 4 -->
-                    <div class="achievement-item" data-achievement="4">
-                        <div class="achievement-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                                <rect x="5" y="2" width="14" height="20" rx="2" ry="2"/>
-                                <line x1="12" y1="18" x2="12.01" y2="18"/>
-                            </svg>
-                        </div>
-                        <h3 class="achievement-title">Flutter Expert</h3>
-                        <p class="achievement-desc">Advanced Mobile Development</p>
-                    </div>
-
-                </div>
-            </div>
-        </section>
-
-        <!-- ============================================ -->
-        <!-- CONTACT -->
-        <!-- ============================================ -->
-        <section class="section contact" id="contact">
-            <div class="section-content">
-                <h2 class="section-title">Let's Connect</h2>
-                <div class="contact-grid">
-                    <div class="contact-info">
-                        <div class="contact-item">
-                            <span class="contact-label">Email</span>
-                            <a href="mailto:Sivaprakash7223@gmail.com" class="contact-link">Sivaprakash7223@gmail.com</a>
-                        </div>
-                        <div class="contact-item">
-                            <span class="contact-label">Phone</span>
-                            <a href="tel:+916369314163" class="contact-link">+91 6369 314 163</a>
-                        </div>
-                        <div class="contact-item">
-                            <span class="contact-label">Location</span>
-                            <a href="https://maps.app.goo.gl/STxBVuKp1LDc7NDF6" target="_blank" class="contact-link">Mamallapuram, Chennai 603104</a>
-                        </div>
-                        <div class="contact-item">
-                            <span class="contact-label">LinkedIn</span>
-                            <a href="https://www.linkedin.com/in/siva-prakash-19b280381" target="_blank" class="contact-link">Connect on LinkedIn</a>
-                        </div>
-                    </div>
-                    <div class="contact-cta">
-                        <p class="cta-text">Open to collaborations, freelance projects, and full-time opportunities.</p>
-                        <a href="mailto:Sivaprakash7223@gmail.com" class="cta-button">
-                            <span class="button-text">Start a Conversation</span>
-                            <span class="button-hover"></span>
-                        </a>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- ============================================ -->
-        <!-- OUTRO -->
-        <!-- ============================================ -->
-        <section class="section outro" id="outro">
-            <div class="outro-content">
-                <p class="outro-text">Designed & crafted with precision</p>
-                <p class="outro-year">© 2025 Siva Prakash</p>
-                <div class="outro-tagline">Where Code Meets Cinema</div>
+        <!-- ==================== SKILLS SECTION ==================== -->
+        <section id="skills" class="section skills-section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-label">003</span>
+                    <h2 class="section-title">EXPERTISE</h2>
+                    <span class="section-line"></span>
+                </div>
+                
+                <div class="skills-quote">
+                    <span class="quote-mark">"</span>
+                    Every tool in the arsenal has a purpose.
+                    <span class="quote-mark">"</span>
+                </div>
+                
+                <!-- Category Tabs -->
+                <div class="skills-tabs">
+                    <button class="skill-tab active" data-category="programming">
+                        <span class="iconify" data-icon="mdi:code-braces" data-width="18"></span>
+                        PROGRAMMING
+                    </button>
+                    <button class="skill-tab" data-category="frontend">
+                        <span class="iconify" data-icon="mdi:monitor" data-width="18"></span>
+                        FRONTEND
+                    </button>
+                    <button class="skill-tab" data-category="backend">
+                        <span class="iconify" data-icon="mdi:server" data-width="18"></span>
+                        BACKEND
+                    </button>
+                    <button class="skill-tab" data-category="mobile">
+                        <span class="iconify" data-icon="mdi:cellphone" data-width="18"></span>
+                        MOBILE
+                    </button>
+                    <button class="skill-tab" data-category="database">
+                        <span class="iconify" data-icon="mdi:database" data-width="18"></span>
+                        DATABASE
+                    </button>
+                    <button class="skill-tab" data-category="ai">
+                        <span class="iconify" data-icon="mdi:brain" data-width="18"></span>
+                        AI / ML
+                    </button>
+                    <button class="skill-tab" data-category="cloud">
+                        <span class="iconify" data-icon="mdi:cloud" data-width="18"></span>
+                        CLOUD & TOOLS
+                    </button>
+                    <button class="skill-tab" data-category="other">
+                        <span class="iconify" data-icon="mdi:puzzle" data-width="18"></span>
+                        OTHER
+                    </button>
+                </div>
+                
+                <!-- Skills Grid -->
+                <div class="skills-grid" id="skills-grid">
+                    <!-- Skills injected by JS -->
+                </div>
+            </div>
+            
+            <!-- Background Pattern -->
+            <div class="skills-bg-pattern"></div>
+        </section>
+
+        <!-- ==================== MARQUEE DIVIDER 2 ==================== -->
+        <div class="marquee-section marquee-reverse">
+            <div class="marquee-track">
+                <span>ENTERPRISE</span>
+                <span>AI</span>
+                <span>MOBILE</span>
+                <span>BACKEND</span>
+                <span>FRONTEND</span>
+                <span>DATABASE</span>
+                <span>CLOUD</span>
+                <span>IoT</span>
+                <span>AUTOMATION</span>
+                <span>DEVTOOLS</span>
+                <span>SECURITY</span>
+                <span>API</span>
+
+                <!-- Duplicate -->
+                <span>ENTERPRISE</span>
+                <span>AI</span>
+                <span>MOBILE</span>
+                <span>BACKEND</span>
+                <span>FRONTEND</span>
+                <span>DATABASE</span>
+                <span>CLOUD</span>
+                <span>IoT</span>
+                <span>AUTOMATION</span>
+                <span>DEVTOOLS</span>
+                <span>SECURITY</span>
+                <span>API</span>
+            </div>
+        </div>
+
+        <!-- ==================== TIMELINE SECTION ==================== -->
+        <section id="timeline" class="section timeline-section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-label">004</span>
+                    <h2 class="section-title">THE JOURNEY</h2>
+                    <span class="section-line"></span>
+                </div>
+                
+                <div class="timeline-quote">
+                    <span class="quote-mark">"</span>
+                    Every line of code is a step forward.
+                    <span class="quote-mark">"</span>
+                </div>
+                
+                <div class="timeline-wrapper">
+                    <div class="timeline-road" id="timeline-road"></div>
+                    <div class="timeline-vehicle" id="timeline-vehicle">
+                        <span class="iconify" data-icon="mdi:rocket" data-width="24"></span>
+                    </div>
+                    
+                    <!-- 2023 -->
+                    <div class="timeline-item timeline-left" data-year="2023">
+                        <div class="timeline-card card-2023">
+                            <div class="timeline-year">2023</div>
+                            <div class="timeline-phase">GENESIS</div>
+                            <div class="timeline-icon">
+                                <span class="iconify" data-icon="mdi:sprout" data-width="28"></span>
+                            </div>
+                            <ul class="timeline-points">
+                                <li>Started Computer Science Journey</li>
+                                <li>Learned programming fundamentals</li>
+                                <li>Built first applications</li>
+                                <li>Explored Java and Web Development</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- 2024 -->
+                    <div class="timeline-item timeline-right" data-year="2024">
+                        <div class="timeline-card card-2024">
+                            <div class="timeline-year">2024</div>
+                            <div class="timeline-phase">IGNITION</div>
+                            <div class="timeline-icon">
+                                <span class="iconify" data-icon="mdi:fire" data-width="28"></span>
+                            </div>
+                            <ul class="timeline-points">
+                                <li>Focused on Mobile Development</li>
+                                <li>Mastered Flutter</li>
+                                <li>Built Smart Attendance App</li>
+                                <li>Worked with BLE</li>
+                                <li>Participated in Innovator's Day</li>
+                                <li>Started exploring backend development</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- 2025 -->
+                    <div class="timeline-item timeline-left" data-year="2025">
+                        <div class="timeline-card card-2025">
+                            <div class="timeline-year">2025</div>
+                            <div class="timeline-phase">EXPANSION</div>
+                            <div class="timeline-icon">
+                                <span class="iconify" data-icon="mdi:earth" data-width="28"></span>
+                            </div>
+                            <ul class="timeline-points">
+                                <li>Expanded into Full Stack Development</li>
+                                <li>Learned Spring Boot</li>
+                                <li>Worked with FastAPI</li>
+                                <li>Integrated AI into projects</li>
+                                <li>Participated in national hackathons</li>
+                                <li>Explored enterprise application architecture</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- 2026 -->
+                    <div class="timeline-item timeline-right" data-year="2026">
+                        <div class="timeline-card card-2026">
+                            <div class="timeline-year">2026</div>
+                            <div class="timeline-phase">ENTERPRISE</div>
+                            <div class="timeline-icon">
+                                <span class="iconify" data-icon="mdi:bank" data-width="28"></span>
+                            </div>
+                            <ul class="timeline-points">
+                                <li>Enterprise Banking Internship</li>
+                                <li>Built production-scale banking modules</li>
+                                <li>Won Reality Ready Award</li>
+                                <li>Developed AI-powered web form automation</li>
+                                <li>Started building highly immersive frontend experiences</li>
+                                <li>Focused on scalable product architecture</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- Present -->
+                    <div class="timeline-item timeline-left" data-year="present">
+                        <div class="timeline-card card-present">
+                            <div class="timeline-year">NOW</div>
+                            <div class="timeline-phase">THE PRESENT</div>
+                            <div class="timeline-icon">
+                                <span class="iconify" data-icon="mdi:lightning-bolt" data-width="28"></span>
+                            </div>
+                            <ul class="timeline-points">
+                                <li>Building enterprise-grade applications</li>
+                                <li>Learning advanced AI engineering</li>
+                                <li>Creating immersive web experiences</li>
+                                <li>Exploring 3D UI</li>
+                                <li>Developing large-scale personal products</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
+        <!-- ==================== PROJECTS SECTION ==================== -->
+        <section id="projects" class="section projects-section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-label">005</span>
+                    <h2 class="section-title">FEATURED PROJECTS</h2>
+                    <span class="section-line"></span>
+                </div>
+                
+                <div class="projects-quote">
+                    <span class="quote-mark">"</span>
+                    Ship it. Break it. Make it better.
+                    <span class="quote-mark">"</span>
+                </div>
+                
+                <div class="projects-grid">
+                    <!-- Project 1: Enterprise Banking -->
+                    <div class="project-card project-banking">
+                        <div class="project-header header-red">
+                            <span class="iconify" data-icon="mdi:bank" data-width="24"></span>
+                            <h3>Enterprise Banking Management System</h3>
+                            <span class="project-stamp stamp-enterprise">ENTERPRISE</span>
+                        </div>
+                        <div class="project-body">
+                            <p class="project-desc">Large enterprise banking simulation with comprehensive module coverage.</p>
+                            <div class="project-features">
+                                <span class="feature-item"><span class="iconify" data-icon="mdi:check-bold" data-width="14"></span> Authentication & Role Management</span>
+                                <span class="feature-item"><span class="iconify" data-icon="mdi:check-bold" data-width="14"></span> Customer & Account Management</span>
+                                <span class="feature-item"><span class="iconify" data-icon="mdi:check-bold" data-width="14"></span> Transactions & UPI/QR Payments</span>
+                                <span class="feature-item"><span class="iconify" data-icon="mdi:check-bold" data-width="14"></span> Biometric Authentication</span>
+                                <span class="feature-item"><span class="iconify" data-icon="mdi:check-bold" data-width="14"></span> Loan Module & KYC</span>
+                                <span class="feature-item"><span class="iconify" data-icon="mdi:check-bold" data-width="14"></span> JWT & Spring Security</span>
+                            </div>
+                            <div class="project-tech">
+                                <span class="tech-badge">React</span>
+                                <span class="tech-badge">Spring Boot</span>
+                                <span class="tech-badge">PostgreSQL</span>
+                                <span class="tech-badge">JWT</span>
+                                <span class="tech-badge">Spring Security</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Project 2: Smart Attendance -->
+                    <div class="project-card project-attendance">
+                        <div class="project-header header-yellow">
+                            <span class="iconify" data-icon="mdi:cellphone-check" data-width="24"></span>
+                            <h3>Smart Attendance System</h3>
+                            <span class="project-stamp stamp-innovation">INNOVATOR'S DAY</span>
+                        </div>
+                        <div class="project-body">
+                            <p class="project-desc">Flutter-based BLE attendance system with location verification and offline capabilities.</p>
+                            <div class="project-features">
+                                <span class="feature-item"><span class="iconify" data-icon="mdi:check-bold" data-width="14"></span> Bluetooth Low Energy</span>
+                                <span class="feature-item"><span class="iconify" data-icon="mdi:check-bold" data-width="14"></span> Automatic Attendance</span>
+                                <span class="feature-item"><span class="iconify" data-icon="mdi:check-bold" data-width="14"></span> Location Verification</span>
+                                <span class="feature-item"><span class="iconify" data-icon="mdi:check-bold" data-width="14"></span> Teacher & Student Dashboards</span>
+                                <span class="feature-item"><span class="iconify" data-icon="mdi:check-bold" data-width="14"></span> Offline Capabilities</span>
+                                <span class="feature-item"><span class="iconify" data-icon="mdi:check-bold" data-width="14"></span> Attendance Analytics</span>
+                            </div>
+                            <div class="project-tech">
+                                <span class="tech-badge">Flutter</span>
+                                <span class="tech-badge">BLE</span>
+                                <span class="tech-badge">Dart</span>
+                                <span class="tech-badge">Location Services</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Project 3: AI Form Assistant -->
+                    <div class="project-card project-ai-form">
+                        <div class="project-header header-violet">
+                            <span class="iconify" data-icon="mdi:robot" data-width="24"></span>
+                            <h3>AI Government Form Assistant</h3>
+                            <span class="project-stamp stamp-award">★ AWARD WINNER</span>
+                        </div>
+                        <div class="project-body">
+                            <p class="project-desc">Automatically fills government web forms using AI-powered browser automation.</p>
+                            <div class="project-features">
+                                <span class="feature-item"><span class="iconify" data-icon="mdi:check-bold" data-width="14"></span> AI Assistance</span>
+                                <span class="feature-item"><span class="iconify" data-icon="mdi:check-bold" data-width="14"></span> Browser Automation</span>
+                                <span class="feature-item"><span class="iconify" data-icon="mdi:check-bold" data-width="14"></span> Smart Form Detection</span>
+                                <span class="feature-item"><span class="iconify" data-icon="mdi:check-bold" data-width="14"></span> Workflow Automation</span>
+                            </div>
+                            <div class="project-tech">
+                                <span class="tech-badge">Python</span>
+                                <span class="tech-badge">Selenium</span>
+                                <span class="tech-badge">AI</span>
+                                <span class="tech-badge">Automation</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Project 4: Grocery E-Commerce -->
+                    <div class="project-card project-grocery">
+                        <div class="project-header header-green">
+                            <span class="iconify" data-icon="mdi:cart" data-width="24"></span>
+                            <h3>Grocery E-Commerce Simulation</h3>
+                            <span class="project-stamp stamp-progress">IN PROGRESS</span>
+                        </div>
+                        <div class="project-body">
+                            <p class="project-desc">Flipkart-inspired grocery platform with real-time features and immersive UI.</p>
+                            <div class="project-features">
+                                <span class="feature-item"><span class="iconify" data-icon="mdi:check-bold" data-width="14"></span> Real-time Product Browsing</span>
+                                <span class="feature-item"><span class="iconify" data-icon="mdi:check-bold" data-width="14"></span> Seller Management</span>
+                                <span class="feature-item"><span class="iconify" data-icon="mdi:check-bold" data-width="14"></span> Map & Order Tracking</span>
+                                <span class="feature-item"><span class="iconify" data-icon="mdi:check-bold" data-width="14"></span> Cart, Wishlist & Checkout</span>
+                                <span class="feature-item"><span class="iconify" data-icon="mdi:check-bold" data-width="14"></span> Leaflet Maps Integration</span>
+                            </div>
+                            <div class="project-tech">
+                                <span class="tech-badge">Full Stack</span>
+                                <span class="tech-badge">Leaflet</span>
+                                <span class="tech-badge">Dynamic UI</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Project 5: Offline Mesh -->
+                    <div class="project-card project-mesh">
+                        <div class="project-header header-blue">
+                            <span class="iconify" data-icon="mdi:access-point" data-width="24"></span>
+                            <h3>Offline Mesh Communication System</h3>
+                            <span class="project-stamp stamp-concept">CONCEPT</span>
+                        </div>
+                        <div class="project-body">
+                            <p class="project-desc">Large-scale communication platform using LoRa and Bluetooth Mesh networking.</p>
+                            <div class="project-features">
+                                <span class="feature-item"><span class="iconify" data-icon="mdi:check-bold" data-width="14"></span> Offline Messaging</span>
+                                <span class="feature-item"><span class="iconify" data-icon="mdi:check-bold" data-width="14"></span> Location Sharing</span>
+                                <span class="feature-item"><span class="iconify" data-icon="mdi:check-bold" data-width="14"></span> Emergency Broadcast</span>
+                                <span class="feature-item"><span class="iconify" data-icon="mdi:check-bold" data-width="14"></span> LoRa + Bluetooth Mesh</span>
+                            </div>
+                            <div class="project-tech">
+                                <span class="tech-badge">Flutter</span>
+                                <span class="tech-badge">LoRa</span>
+                                <span class="tech-badge">BLE Mesh</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== EXPERIENCE SECTION ==================== -->
+        <section id="experience" class="section experience-section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-label">006</span>
+                    <h2 class="section-title">EXPERIENCE</h2>
+                    <span class="section-line"></span>
+                </div>
+                
+                <div class="experience-wrapper">
+                    <!-- Mission Log Entry -->
+                    <div class="mission-entry">
+                        <div class="mission-header">
+                            <span class="mission-number">MISSION 001</span>
+                            <span class="mission-date">2026</span>
+                        </div>
+                        <div class="mission-body">
+                            <h3 class="mission-role">Java Full Stack Intern</h3>
+                            <p class="mission-company">
+                                <span class="iconify" data-icon="mdi:office-building" data-width="20"></span>
+                                Dvein Innovation Pvt Ltd
+                            </p>
+                            
+                            <div class="mission-details">
+                                <h4>RESPONSIBILITIES</h4>
+                                <ul class="mission-list">
+                                    <li><span class="iconify" data-icon="mdi:arrow-right-bold" data-width="14"></span> Authentication Module Development</li>
+                                    <li><span class="iconify" data-icon="mdi:arrow-right-bold" data-width="14"></span> Account & Transaction Module</li>
+                                    <li><span class="iconify" data-icon="mdi:arrow-right-bold" data-width="14"></span> Backend Development & Security</li>
+                                    <li><span class="iconify" data-icon="mdi:arrow-right-bold" data-width="14"></span> Database Design & API Development</li>
+                                    <li><span class="iconify" data-icon="mdi:arrow-right-bold" data-width="14"></span> React Integration</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="mission-achievement">
+                                <div class="achievement-stamp">
+                                    <span class="iconify" data-icon="mdi:trophy" data-width="28"></span>
+                                    <span>REALITY READY AWARD</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Hackathons -->
+                    <div class="hackathons-grid">
+                        <div class="hackathon-card">
+                            <div class="hackathon-badge badge-winner">WINNER</div>
+                            <h4>Innoclash 2026</h4>
+                            <p>Enterprise Banking Project</p>
+                        </div>
+                        <div class="hackathon-card">
+                            <div class="hackathon-badge badge-national">NATIONAL</div>
+                            <h4>Intellithon'25</h4>
+                            <p>24-hour National Hackathon @ Zoho</p>
+                        </div>
+                        <div class="hackathon-card">
+                            <div class="hackathon-badge badge-showcase">SHOWCASE</div>
+                            <h4>Innovator's Day</h4>
+                            <p>Smart Attendance Project</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Certifications -->
+                    <div class="certifications-section">
+                        <h3 class="cert-title">CERTIFICATIONS & LEARNING</h3>
+                        <div class="cert-badges">
+                            <span class="cert-badge">Java Certification</span>
+                            <span class="cert-badge">AI & ML</span>
+                            <span class="cert-badge">Software Development</span>
+                            <span class="cert-badge">Programming</span>
+                            <span class="cert-badge">Hackathons</span>
+                            <span class="cert-badge">Internships</span>
+                            <span class="cert-badge">Continuous Learning</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== AWARDS SECTION ==================== -->
+        <section id="awards" class="section awards-section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-label">007</span>
+                    <h2 class="section-title">AWARDS & CERTIFICATES</h2>
+                    <span class="section-line"></span>
+                </div>
+                
+                <div class="awards-wall">
+                    <div class="award-frame">
+                        <div class="frame-inner">
+                            <span class="iconify" data-icon="mdi:file-certificate" data-width="48"></span>
+                            <span class="frame-label">Intern Certificate</span>
+                        </div>
+                    </div>
+                    <div class="award-frame">
+                        <div class="frame-inner">
+                            <span class="iconify" data-icon="mdi:file-certificate" data-width="48"></span>
+                            <span class="frame-label">Motion Cut Certificate</span>
+                        </div>
+                    </div>
+                    <div class="award-frame">
+                        <div class="frame-inner">
+                            <span class="iconify" data-icon="mdi:trophy" data-width="48"></span>
+                            <span class="frame-label">Zoho Hackathon</span>
+                        </div>
+                    </div>
+                    <div class="award-frame">
+                        <div class="frame-inner">
+                            <span class="iconify" data-icon="mdi:star-circle" data-width="48"></span>
+                            <span class="frame-label">Innovator's Day</span>
+                        </div>
+                    </div>
+                    <div class="award-frame">
+                        <div class="frame-inner">
+                            <span class="iconify" data-icon="mdi:trophy-award" data-width="48"></span>
+                            <span class="frame-label">RIT Hackathon Winner</span>
+                        </div>
+                    </div>
+                    <div class="award-frame">
+                        <div class="frame-inner">
+                            <span class="iconify" data-icon="mdi:plus-circle" data-width="48"></span>
+                            <span class="frame-label">More Coming...</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== CONTACT SECTION ==================== -->
+        <section id="contact" class="section contact-section">
+            <div class="container">
+                <div class="section-header section-header-light">
+                    <span class="section-label">008</span>
+                    <h2 class="section-title">CONTACT</h2>
+                    <span class="section-line"></span>
+                </div>
+                
+                <div class="contact-terminal">
+                    <div class="terminal-header">
+                        <span class="terminal-dot dot-red"></span>
+                        <span class="terminal-dot dot-yellow"></span>
+                        <span class="terminal-dot dot-green"></span>
+                        <span class="terminal-title">sivaprakash@portfolio:~$</span>
+                    </div>
+                    <div class="terminal-body">
+                        <div class="terminal-line">
+                            <span class="terminal-prompt">&gt;</span>
+                            <span class="terminal-text">INCOMING TRANSMISSION...</span>
+                        </div>
+                        <div class="terminal-line">
+                            <span class="terminal-prompt">&gt;</span>
+                            <span class="terminal-text">SOURCE: SIVAPRAKASH.MAINFRAME</span>
+                        </div>
+                        <div class="terminal-line">
+                            <span class="terminal-prompt">&gt;</span>
+                            <span class="terminal-text">STATUS: <span class="text-green">AVAILABLE FOR OPPORTUNITIES</span></span>
+                        </div>
+                        <div class="terminal-divider"></div>
+                        
+                        <div class="contact-links">
+                            <a href="https://github.com/CoreCoderX" target="_blank" class="contact-btn">
+                                <span class="iconify" data-icon="mdi:github" data-width="24"></span>
+                                <span class="contact-label">GITHUB</span>
+                                <span class="contact-value">github.com/CoreCoderX</span>
+                                <span class="iconify contact-arrow" data-icon="mdi:arrow-top-right" data-width="18"></span>
+                            </a>
+                            <a href="https://www.linkedin.com/in/sivaprakash-dev/" target="_blank" class="contact-btn">
+                                <span class="iconify" data-icon="mdi:linkedin" data-width="24"></span>
+                                <span class="contact-label">LINKEDIN</span>
+                                <span class="contact-value">linkedin.com/in/sivaprakash-dev</span>
+                                <span class="iconify contact-arrow" data-icon="mdi:arrow-top-right" data-width="18"></span>
+                            </a>
+                            <a href="mailto:sivaprakash7223@gmail.com" class="contact-btn">
+                                <span class="iconify" data-icon="mdi:email" data-width="24"></span>
+                                <span class="contact-label">EMAIL</span>
+                                <span class="contact-value">sivaprakash7223@gmail.com</span>
+                                <span class="iconify contact-arrow" data-icon="mdi:arrow-top-right" data-width="18"></span>
+                            </a>
+                            <a href="tel:+916369314163" class="contact-btn">
+                                <span class="iconify" data-icon="mdi:phone" data-width="24"></span>
+                                <span class="contact-label">PHONE</span>
+                                <span class="contact-value">+91 6369314163</span>
+                                <span class="iconify contact-arrow" data-icon="mdi:arrow-top-right" data-width="18"></span>
+                            </a>
+                        </div>
+                        
+                        <div class="terminal-divider"></div>
+                        <div class="terminal-line">
+                            <span class="terminal-prompt">&gt;</span>
+                            <span class="terminal-text terminal-cursor">LET'S BUILD SOMETHING THAT MATTERS_</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
-    <script src="script.js"></script>
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-title">
+                    BUILT WITH <span class="footer-obsession">OBSESSION</span>
+                </div>
+                <div class="footer-credits">
+                    <span>Designed & Developed by <strong>Sivaprakash</strong></span>
+                    <span class="footer-year">2025</span>
+                </div>
+                <div class="footer-socials">
+                    <a href="https://github.com/CoreCoderX" target="_blank" class="social-btn" aria-label="GitHub">
+                        <span class="iconify" data-icon="mdi:github" data-width="24"></span>
+                    </a>
+                    <a href="https://www.linkedin.com/in/sivaprakash-dev/" target="_blank" class="social-btn" aria-label="LinkedIn">
+                        <span class="iconify" data-icon="mdi:linkedin" data-width="24"></span>
+                    </a>
+                    <a href="mailto:sivaprakash7223@gmail.com" class="social-btn" aria-label="Email">
+                        <span class="iconify" data-icon="mdi:email" data-width="24"></span>
+                    </a>
+                </div>
+                <button class="back-to-top" id="back-to-top" aria-label="Back to top">
+                    <span class="iconify" data-icon="mdi:rocket-launch" data-width="24"></span>
+                </button>
+            </div>
+            <div class="footer-bottom">
+                <span>"The best is yet to be compiled."</span>
+            </div>
+        </div>
+    </footer>
 
+    <!-- ==================== CHAOS MODE TOGGLE ==================== -->
+    <button class="chaos-toggle" id="chaos-toggle" aria-label="Toggle Chaos Mode">
+        <span class="iconify" data-icon="mdi:lightning-bolt" data-width="20"></span>
+        <span class="chaos-label">CHAOS</span>
+    </button>
+
+    <!-- ==================== DAY/NIGHT TOGGLE ==================== -->
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+        <span class="iconify theme-icon-day" data-icon="mdi:weather-sunny" data-width="20"></span>
+        <span class="iconify theme-icon-night" data-icon="mdi:weather-night" data-width="20"></span>
+    </button>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
 </body>
 </html>
