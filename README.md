@@ -9,6 +9,10 @@
 [![Iconify](https://img.shields.io/badge/Iconify-1769AA?style=for-the-badge&logo=iconify&logoColor=white)](https://iconify.design/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
 
+## Preview the page
+
+Visit the Link: **https://corecoderx.github.io/portfolio/**
+
 ## Overview
 
 **Neo Brutalism Portfolio** is a highly interactive, performance-focused developer portfolio built entirely with vanilla web technologies. Instead of following conventional minimalist portfolio templates, it embraces a bold **Neo-Brutalist** design language featuring thick borders, hard offset shadows, vibrant color blocks, and expressive typography.
