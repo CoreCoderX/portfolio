@@ -453,6 +453,7 @@ function initMainAnimations() {
     ease: "back.out(1.7)",
   });
 
+  //causing soft skillls
   // gsap.from(".stamp", {
   //   scrollTrigger: { trigger: ".personality-stamps", start: "top 80%" },
   //   scale: 0,
@@ -463,13 +464,26 @@ function initMainAnimations() {
   //   ease: "back.out(2)",
   // });
 
-  // Education Gauge
-  gsap.to(".cgpa-fill", {
-    scrollTrigger: { trigger: ".edu-cgpa", start: "top 80%" },
-    width: "81.2%", // 8.12/10
-    duration: 1.5,
-    ease: "power2.out",
+  // Education Gauges
+  gsap.utils.toArray(".cgpa-fill").forEach(fill => {
+    const val = fill.getAttribute("data-value");
+    let widthPercent = "0%";
+    if (val.includes("%")) {
+      widthPercent = val;
+    } else {
+      const num = parseFloat(val);
+      if (!isNaN(num)) {
+        widthPercent = (num * 10) + "%";
+      }
+    }
+    gsap.to(fill, {
+      scrollTrigger: { trigger: fill.closest(".edu-cgpa"), start: "top 80%" },
+      width: widthPercent,
+      duration: 1.5,
+      ease: "power2.out",
+    });
   });
+
 
   // Timeline
   gsap.utils.toArray(".timeline-item").forEach((item, i) => {
@@ -545,33 +559,190 @@ function initMainAnimations() {
 // =========================================
 
 function initToggles() {
-  const themeToggle = document.getElementById("theme-toggle");
-  const chaosToggle = document.getElementById("chaos-toggle");
-
-  // Theme
-  if (themeToggle) {
-    // Load saved theme
-    const savedTheme = localStorage.getItem("theme");
-    if (savedTheme === "dark") document.body.classList.add("dark-mode");
-
-    themeToggle.addEventListener("click", () => {
-      document.body.classList.toggle("dark-mode");
-      const isDark = document.body.classList.contains("dark-mode");
-      localStorage.setItem("theme", isDark ? "dark" : "light");
-    });
-  }
-
-  // Chaos
-  if (chaosToggle) {
-    chaosToggle.addEventListener("click", () => {
-      document.body.classList.toggle("chaos-mode");
-      chaosToggle.classList.toggle("active");
-    });
-  }
+  // Theme (dark mode button removed – handled via CSS class)
+  const savedTheme = localStorage.getItem("theme");
+  if (savedTheme === "dark") document.body.classList.add("dark-mode");
 }
 
 // =========================================
-// 9. INITIALIZATION
+// 9. LIGHTBOX GALLERY
+// =========================================
+
+function initLightbox() {
+  const frames = document.querySelectorAll(".award-frame[data-lightbox]");
+  if (!frames.length) return;
+
+  // Build ordered list of images from frames
+  const images = Array.from(frames).map((frame) => ({
+    src: frame.querySelector(".award-thumb")?.src || "",
+    alt: frame.querySelector(".award-thumb")?.alt || "",
+    caption: frame.querySelector(".frame-label")?.textContent || "",
+  }));
+
+  const modal    = document.getElementById("lightbox-modal");
+  const backdrop = document.getElementById("lightbox-backdrop");
+  const img      = document.getElementById("lightbox-img");
+  const caption  = document.getElementById("lightbox-caption");
+  const counter  = document.getElementById("lightbox-counter");
+  const closeBtn = document.getElementById("lightbox-close");
+  const prevBtn  = document.getElementById("lightbox-prev");
+  const nextBtn  = document.getElementById("lightbox-next");
+
+  let currentIndex = 0;
+
+  function openLightbox(index) {
+    currentIndex = ((index % images.length) + images.length) % images.length;
+    const item = images[currentIndex];
+    img.src = item.src;
+    img.alt = item.alt;
+    caption.textContent = item.caption;
+    counter.textContent = `${currentIndex + 1} / ${images.length}`;
+    modal.removeAttribute("hidden");
+    document.body.style.overflow = "hidden";
+    closeBtn.focus();
+  }
+
+  function closeLightbox() {
+    modal.setAttribute("hidden", "");
+    document.body.style.overflow = "";
+    // Return focus to triggering frame
+    const trigger = document.querySelector(`.award-frame[data-lightbox="${currentIndex}"]`);
+    if (trigger) trigger.focus();
+  }
+
+  function showNext() { openLightbox(currentIndex + 1); }
+  function showPrev() { openLightbox(currentIndex - 1); }
+
+  // Open on frame click / enter
+  frames.forEach((frame) => {
+    const idx = parseInt(frame.getAttribute("data-lightbox"), 10);
+    frame.addEventListener("click", () => openLightbox(idx));
+    frame.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openLightbox(idx); }
+    });
+  });
+
+  closeBtn.addEventListener("click", closeLightbox);
+  backdrop.addEventListener("click", closeLightbox);
+  nextBtn.addEventListener("click", showNext);
+  prevBtn.addEventListener("click", showPrev);
+
+  // Keyboard navigation
+  document.addEventListener("keydown", (e) => {
+    if (modal.hasAttribute("hidden")) return;
+    if (e.key === "Escape")      closeLightbox();
+    if (e.key === "ArrowRight")  showNext();
+    if (e.key === "ArrowLeft")   showPrev();
+  });
+}
+
+// =========================================
+// 10. TERMINAL CHAT MODAL
+// =========================================
+
+function initChatModal() {
+  const floatBtn      = document.getElementById("msg-float-btn");
+  const chatModal     = document.getElementById("chat-modal");
+  const closeBtn      = document.getElementById("chat-modal-close");
+  const backdrop      = document.getElementById("chat-modal-backdrop");
+  const form          = document.getElementById("chat-form");
+  const nameInput     = document.getElementById("chat-name");
+  const emailInput    = document.getElementById("chat-email");
+  const messageInput  = document.getElementById("chat-message");
+  const submitBtn     = document.getElementById("chat-submit-btn");
+  const formState     = document.getElementById("chat-form-state");
+  const successState  = document.getElementById("chat-success-state");
+  const resetBtn      = document.getElementById("chat-reset-btn");
+
+  if (!floatBtn || !chatModal) return;
+
+  let chatReady = false;
+
+  function openModal() {
+    chatModal.removeAttribute("hidden");
+    floatBtn.classList.add("active");
+    document.body.style.overflow = "hidden";
+
+    // Initialize configuration on first open
+    if (!chatReady && window.PortfolioChat) {
+      window.PortfolioChat.init({
+        workerUrl: "https://portfolio-chat-worker.sivapr7223.workers.dev",
+      });
+      chatReady = true;
+    }
+    
+    // Focus first empty or message input
+    setTimeout(() => {
+      if (!nameInput.value) {
+        nameInput.focus();
+      } else if (!emailInput.value) {
+        emailInput.focus();
+      } else {
+        messageInput.focus();
+      }
+    }, 100);
+  }
+
+  function closeModal() {
+    chatModal.setAttribute("hidden", "");
+    floatBtn.classList.remove("active");
+    document.body.style.overflow = "";
+    floatBtn.focus();
+  }
+
+  // Event handlers
+  floatBtn.addEventListener("click", openModal);
+  closeBtn.addEventListener("click", closeModal);
+  backdrop.addEventListener("click", closeModal);
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && !chatModal.hasAttribute("hidden")) closeModal();
+  });
+
+  // Handle Form Submission
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const name = nameInput.value.trim();
+    const email = emailInput.value.trim();
+    const message = messageInput.value.trim();
+
+    if (!message) return;
+
+    // Loading UI state
+    submitBtn.disabled = true;
+    const btnText = submitBtn.querySelector("span");
+    const originalText = btnText.textContent;
+    btnText.textContent = "SENDING...";
+
+    try {
+      await window.PortfolioChat.sendMessage(message, email, name);
+
+      // Transition to Success State
+      formState.setAttribute("hidden", "");
+      successState.removeAttribute("hidden");
+
+      // Reset message field (keep name and email for repeat messages)
+      messageInput.value = "";
+    } catch (err) {
+      console.error(err);
+      alert("Failed to send message. Please check your connection and try again.");
+    } finally {
+      submitBtn.disabled = false;
+      btnText.textContent = originalText;
+    }
+  });
+
+  // Handle Form Reset
+  resetBtn.addEventListener("click", () => {
+    successState.setAttribute("hidden", "");
+    formState.removeAttribute("hidden");
+    setTimeout(() => messageInput.focus(), 50);
+  });
+}
+
+// =========================================
+// 11. INITIALIZATION
 // =========================================
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -581,4 +752,6 @@ document.addEventListener("DOMContentLoaded", () => {
   initHero();
   initSkills();
   initToggles();
+  initLightbox();
+  initChatModal();
 });

@@ -1,0 +1,15 @@
+# Local wrangler cache and state
+.wrangler/
+worker/.wrangler/
+
+# Sensitive environment variables / secrets
+.env
+worker/.env
+
+# Node.js dependencies
+node_modules/
+package-lock.json
+
+# Operating System files
+.DS_Store
+Thumbs.db
