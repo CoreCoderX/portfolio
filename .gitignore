@@ -1,6 +1,7 @@
 # Local wrangler cache and state
 .wrangler/
 worker/.wrangler/
+worker/wrangler.toml
 
 # Sensitive environment variables / secrets
 .env
