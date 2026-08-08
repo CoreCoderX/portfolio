@@ -253,7 +253,7 @@ body.dark-mode .btn-secondary {
 }
 
 .quote-mark-lg {
-    font-size: 64px;
+    font-size: 48px;
     color: #FFD93D;
     line-height: 0;
     vertical-align: sub;
@@ -1848,6 +1848,10 @@ body.dark-mode .skill-icon {
     text-transform: uppercase; 
     letter-spacing: 0.1em; 
 }
+
+.skill-level.freq-daily { color: var(--accent-red); }
+.skill-level.freq-weekly { color: var(--fg-black); }
+.skill-level.freq-exploring { color: var(--accent-blue); }
 
 @media (max-width: 640px) {
     .skill-level {

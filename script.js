@@ -16,10 +16,11 @@ const SKILLS_DATA = {
     { name: "Java", icon: "picon:java", level: 90 },
     { name: "Kotlin", icon: "simple-icons:kotlin", level: 75 },
     { name: "Dart", icon: "simple-icons:dart", level: 85 },
-    { name: "Python", icon: "simple-icons:python", level: 80 },
+    { name: "Python", icon: "simple-icons:python", level: 85 },
     { name: "JavaScript", icon: "simple-icons:javascript", level: 90 },
     { name: "TypeScript", icon: "simple-icons:typescript", level: 85 },
-    { name: "SQL", icon: "mdi:database", level: 80 },
+    { name: "Go", icon: "simple-icons:go", level: 50 },
+    { name: "SQL", icon: "mdi:database", level: 85 },
     { name: "C", icon: "mdi:language-c", level: 70 },
     { name: "C++", icon: "mdi:language-cpp", level: 70 },
   ],
@@ -28,14 +29,17 @@ const SKILLS_DATA = {
     { name: "CSS3", icon: "simple-icons:css3", level: 90 },
     { name: "Tailwind", icon: "simple-icons:tailwindcss", level: 90 },
     { name: "React", icon: "simple-icons:react", level: 85 },
-    { name: "Next.js", icon: "simple-icons:nextjs", level: 75 },
-    { name: "Vite", icon: "simple-icons:vite", level: 80 },
+    { name: "Next.js", icon: "ri:nextjs-fill", level: 75 },
+    { name: "Vite", icon: "simple-icons:vite", level: 85 },
+    { name: "Material UI", icon: "simple-icons:mui", level: 85 },
+    { name: "Figma", icon: "simple-icons:figma", level: 80 },
     { name: "Framer Motion", icon: "mdi:animation", level: 70 },
     { name: "Responsive Design", icon: "mdi:cellphone-settings", level: 95 },
   ],
   backend: [
     { name: "Spring Boot", icon: "simple-icons:spring", level: 85 },
-    { name: "FastAPI", icon: "simple-icons:fastapi", level: 80 },
+    { name: "GOlang", icon: "simple-icons:go", level: 50 },
+    { name: "FastAPI", icon: "simple-icons:fastapi", level: 85 },
     { name: "Node.js", icon: "simple-icons:nodedotjs", level: 85 },
     { name: "Express", icon: "simple-icons:express", level: 85 },
     { name: "REST API", icon: "mdi:api", level: 90 },
@@ -45,41 +49,42 @@ const SKILLS_DATA = {
   mobile: [
     { name: "Flutter", icon: "simple-icons:flutter", level: 90 },
     { name: "Android Studio", icon: "simple-icons:androidstudio", level: 85 },
-    { name: "BLE", icon: "mdi:bluetooth", level: 80 },
-    { name: "Location Services", icon: "mdi:map-marker-radius", level: 85 },
-    { name: "Offline First", icon: "mdi:wifi-off", level: 75 },
+    { name: "Capacitor JS", icon: "simple-icons:capacitor", level: 80 },
+    { name: "React Native", icon: "simple-icons:react", level: 85 },
     { name: "State Mgmt", icon: "mdi:state-machine", level: 85 },
   ],
   database: [
     { name: "PostgreSQL", icon: "simple-icons:postgresql", level: 85 },
-    { name: "MongoDB", icon: "simple-icons:mongodb", level: 80 },
-    { name: "Redis", icon: "simple-icons:redis", level: 70 },
-    { name: "JPA/Hibernate", icon: "mdi:database-sync", level: 80 },
-    { name: "SQLAlchemy", icon: "mdi:database-edit", level: 75 },
+    { name: "MongoDB", icon: "simple-icons:mongodb", level: 85 },
+    { name: "Redis", icon: "simple-icons:redis", level: 85 },
+    { name: "JPA/Hibernate", icon: "mdi:database-sync", level: 85 },
+    { name: "SQLAlchemy", icon: "mdi:database-edit", level: 85 },
   ],
   ai: [
     { name: "Prompt Eng.", icon: "mdi:message-text", level: 85 },
-    { name: "LLM APIs", icon: "mdi:robot", level: 80 },
+    { name: "LLM APIs", icon: "mdi:robot", level: 85 },
     { name: "OpenRouter", icon: "mdi:router", level: 75 },
+    { name: "Groq", icon: "mdi:brain", level: 70 },
     { name: "Hugging Face", icon: "simple-icons:huggingface", level: 70 },
-    { name: "Agent Systems", icon: "mdi:brain", level: 75 },
-    { name: "GenAI", icon: "mdi:sparkles", level: 80 },
+    { name: "Agent Systems", icon: "mdi:brain", level: 50 },
+    { name: "GenAI", icon: "mdi:sparkles", level: 50 },
   ],
   cloud: [
     { name: "Git", icon: "simple-icons:git", level: 90 },
     { name: "GitHub", icon: "simple-icons:github", level: 95 },
-    { name: "Docker", icon: "simple-icons:docker", level: 70 },
-    { name: "Firebase", icon: "simple-icons:firebase", level: 80 },
+    { name: "Docker", icon: "simple-icons:docker", level: 85 },
+    { name: "Firebase", icon: "simple-icons:firebase", level: 85 },
+    { name: "Supabase", icon: "ri:supabase-fill", level: 85 },
     { name: "Linux", icon: "simple-icons:linux", level: 75 },
     { name: "Figma", icon: "simple-icons:figma", level: 80 },
   ],
   other: [
-    { name: "IoT", icon: "mdi:chip", level: 70 },
+    { name: "IoT", icon: "mdi:chip", level: 50 },
     { name: "REST APIs", icon: "mdi:web", level: 90 },
     { name: "JWT/TOTP", icon: "mdi:two-factor-authentication", level: 85 },
     { name: "UI/UX", icon: "mdi:palette", level: 80 },
     { name: "Agile", icon: "mdi:sync", level: 85 },
-    { name: "Optimization", icon: "mdi:speedometer", level: 80 },
+    { name: "Optimization", icon: "mdi:speedometer", level: 85 },
   ],
 };
 
@@ -255,11 +260,20 @@ function initSkills() {
       card.className = "skill-card";
       card.style.opacity = "0"; // For GSAP
 
-      // Determine level text
-      let levelText = "BEGINNER";
-      if (skill.level > 85) levelText = "EXPERT";
-      else if (skill.level > 70) levelText = "ADVANCED";
-      else if (skill.level > 50) levelText = "INTERMEDIATE";
+      // Determine usage frequency
+      let freqText = "EXPLORING";
+      let freqClass = "freq-exploring";
+      if (skill.level >= 85) {
+        freqText = "DAILY DRIVER";
+        freqClass = "freq-daily";
+      } else if (skill.level >= 70) {
+        freqText = "WEEKLY USE";
+        freqClass = "freq-weekly";
+      }
+      else{
+        freqText = "EXPLORING";
+        freqClass = "freq-exploring";
+      }
 
       card.innerHTML = `
                 <div class="skill-icon">
@@ -269,7 +283,7 @@ function initSkills() {
                 <div class="skill-bar-container">
                     <div class="skill-bar-fill" data-level="${skill.level}"></div>
                 </div>
-                <div class="skill-level">${levelText}</div>
+                <div class="skill-level ${freqClass}">${freqText}</div>
             `;
 
       grid.appendChild(card);
