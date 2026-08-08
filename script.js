@@ -84,84 +84,6 @@ const SKILLS_DATA = {
 };
 
 // =========================================
-// 2. BOOT SEQUENCE
-// =========================================
-
-const bootLines = [
-  "> INITIALIZING...",
-  "> LOADING MODULES: [FRONTEND] [BACKEND] [DB] [Cloud]",
-  "> CONNECTING TO SIVAPRAKASH.MAINFRAME...",
-  "> ESTABLISHING SECURE HANDSHAKE...",
-  "> ACCESS GRANTED ✓",
-];
-
-function initBootSequence() {
-  const bootScreen = document.getElementById("boot-screen");
-  const linesContainer = document.getElementById("boot-lines");
-  const progressBar = document.getElementById("boot-progress-bar");
-  const skipBtn = document.getElementById("boot-skip");
-
-  if (!bootScreen) return;
-
-  let currentLine = 0;
-  let progress = 0;
-
-  // Skip functionality
-  skipBtn.addEventListener("click", finishBoot);
-
-  function typeLines() {
-    if (currentLine < bootLines.length) {
-      const lineEl = document.createElement("div");
-      lineEl.className = "boot-line";
-      lineEl.textContent = bootLines[currentLine];
-
-      // Color the "OK" or checkmarks
-      if (bootLines[currentLine].includes("✓")) {
-        lineEl.innerHTML = bootLines[currentLine].replace(
-          "✓",
-          '<span class="ok">✓</span>',
-        );
-      }
-
-      linesContainer.appendChild(lineEl);
-
-      setTimeout(() => lineEl.classList.add("visible"), 50);
-
-      currentLine++;
-      setTimeout(typeLines, 400);
-    } else {
-      startProgress();
-    }
-  }
-
-  function startProgress() {
-    const interval = setInterval(() => {
-      progress += Math.random() * 15;
-      if (progress >= 100) {
-        progress = 100;
-        clearInterval(interval);
-        setTimeout(finishBoot, 300);
-      }
-      progressBar.style.width = `${progress}%`;
-    }, 100);
-  }
-
-  function finishBoot() {
-    gsap.to(bootScreen, {
-      opacity: 0,
-      duration: 0.5,
-      onComplete: () => {
-        bootScreen.style.display = "none";
-        initMainAnimations();
-      },
-    });
-  }
-
-  // Start
-  setTimeout(typeLines, 500);
-}
-
-// =========================================
 // 3. CUSTOM CURSOR
 // =========================================
 
@@ -746,7 +668,7 @@ function initChatModal() {
 // =========================================
 
 document.addEventListener("DOMContentLoaded", () => {
-  initBootSequence();
+  initMainAnimations();
   initCursor();
   initNavigation();
   initHero();
