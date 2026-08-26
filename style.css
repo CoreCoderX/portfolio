@@ -54,6 +54,9 @@ body.dark-mode {
 html {
     scroll-behavior: smooth;
     scroll-padding-top: 80px;
+    /* Lock the viewport to vertical-only scrolling (fixes mobile side-scroll) */
+    overflow-x: hidden; /* fallback for older browsers */
+    overflow-x: clip;   /* modern browsers: hard clip, no scroll container created */
 }
 
 body {
@@ -63,6 +66,7 @@ body {
     color: var(--fg-black);
     line-height: 1.5;
     overflow-x: hidden;
+    overflow-x: clip;
     transition: background-color 0.3s, color 0.3s;
 }
 
@@ -248,7 +252,10 @@ body.dark-mode .btn-secondary {
 
 @media (max-width: 640px) {
     .quote-mark {
-        font-size: 24px;
+        font-size: 18px;
+        /* Occupy real space in the line box so marks never overlap wrapped lines */
+        line-height: 1;
+        vertical-align: baseline;
     }
 }
 
@@ -265,7 +272,10 @@ body.dark-mode .quote-mark-lg {
 
 @media (max-width: 640px) {
     .quote-mark-lg {
-        font-size: 48px;
+        font-size: 24px;
+        /* Occupy real space in the line box so marks never overlap wrapped lines */
+        line-height: 1;
+        vertical-align: baseline;
     }
 }
 
@@ -1875,6 +1885,8 @@ body.dark-mode .skill-icon {
     background: var(--white); 
     border-top: 4px solid var(--fg-black); 
     border-bottom: 4px solid var(--fg-black); 
+    /* Timeline cards animate in from x:±100 — clip so they never widen the page */
+    overflow-x: clip;
 }
 
 @media (max-width: 640px) {
@@ -2667,6 +2679,11 @@ body.dark-mode .cert-badge:hover {
 /* =========================================
    16. AWARDS SECTION
    ========================================= */
+.awards-section {
+    /* Award frames rotate in from -10deg — clip so they never widen the page */
+    overflow-x: clip;
+}
+
 .awards-wall {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
