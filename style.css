@@ -2260,6 +2260,14 @@ body.dark-mode .stamp-enterprise {
 }
 .stamp-progress { background: var(--accent-green); }
 .stamp-concept { background: var(--accent-blue); }
+.stamp-extension {
+    background: var(--accent-red);
+    color: var(--white);
+}
+.stamp-live {
+    background: var(--accent-green);
+    color: #000;
+}
 
 .project-body { 
     padding: 24px; 
